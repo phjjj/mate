@@ -20,7 +20,7 @@ export const Title = styled.main`
   padding-top: 100px;
 `;
 
-export const Button = styled.main`
+export const Button = styled.button`
   display: flex;
   width: 312px;
   height: 52px;
@@ -28,4 +28,5 @@ export const Button = styled.main`
   border-radius: 15px;
   justify-content: center;
   align-items: center;
+  border: none;
 `;
