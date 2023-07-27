@@ -10,7 +10,8 @@ export const Main = styled.main`
   gap: 40px;
 `;
 export const TitleBox = styled.div`
-  padding-top: 100px;
+  display: flex;
+  margin-top: 50px;
   color: #000;
   text-align: center;
   font-family: Archivo Black;
