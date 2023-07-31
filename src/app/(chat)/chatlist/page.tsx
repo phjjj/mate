@@ -65,7 +65,7 @@ export default function ChatList() {
                   <DeparturesInfoBox>
                     <DeparturesText>{item.departures}</DeparturesText>
                     <DeparturesTimeSpan>
-                      {item.departuresTime}
+                      {item.departureTime}
                     </DeparturesTimeSpan>
                   </DeparturesInfoBox>
                   <BsArrowRightCircle />
