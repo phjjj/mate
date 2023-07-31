@@ -25,79 +25,29 @@ import { BsArrowRightCircle, BsFillBookmarkFill } from "react-icons/bs";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { getAllJSDocTags } from "typescript";
+import axios from "axios";
 export default function ChatList() {
+  const params = useSearchParams();
+  let id;
+
+  for (const [key, value] of params.entries()) {
+    id = value;
+  }
+
   // 유저데이터
-  const user = [{ name: "박해준" }];
-  // 채팅방 임시 데이터
-  const chatList = [
-    {
-      title: "경운대",
-      departures: "인동",
-      departuresTime: "09:00",
-      destination: "경운대학교",
-      destinationTime: "09:20",
-      people: 4,
-      host: "손민석",
-    },
-    {
-      title: "어디가실래요",
-      departures: "옥계",
-      departuresTime: "09:00",
-      destination: "경운대학교",
-      destinationTime: "09:20",
-      people: 2,
-      host: "박해준",
-    },
-    {
-      title: "같이가요",
-      departures: "인동",
-      departuresTime: "08:00",
-      destination: "경운대학교",
-      destinationTime: "09:00",
-      people: 4,
-      host: "김지섭",
-    },
-    {
-      title: "같이가요",
-      departures: "인동",
-      departuresTime: "08:00",
-      destination: "경운대학교",
-      destinationTime: "09:00",
-      people: 4,
-      host: "김지섭",
-    },
-    {
-      title: "같이가요",
-      departures: "인동",
-      departuresTime: "08:00",
-      destination: "경운대학교",
-      destinationTime: "09:00",
-      people: 4,
-      host: "김지섭",
-    },
-    {
-      title: "같이가요",
-      departures: "인동",
-      departuresTime: "08:00",
-      destination: "경운대학교",
-      destinationTime: "09:00",
-      people: 4,
-      host: "김지",
-    },
-    {
-      title: "같이가요",
-      departures: "인동",
-      departuresTime: "08:00",
-      destination: "경운대학교",
-      destinationTime: "09:00",
-      people: 4,
-      host: "김",
-    },
-  ];
+  //const user = [{ name: "박해준" }];
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [chatList, setChatList] = useState([]);
+  const getChatList = async () => {
+    const res = await axios.get("/api/chats");
+    setChatList(res.data.chats);
+  };
 
   useEffect(() => {
+    getChatList();
     setIsLoading(true);
   }, []);
 
@@ -106,7 +56,7 @@ export default function ChatList() {
       <TitleBox>채팅방목록</TitleBox>
       <Box>
         <List>
-          {chatList.map((item, idx) => {
+          {chatList.map((item: any, idx) => {
             return (
               <Item key={idx}>
                 <BsFillBookmarkFill className="mark" />
@@ -114,12 +64,16 @@ export default function ChatList() {
                 <ChatInfoBox>
                   <DeparturesInfoBox>
                     <DeparturesText>{item.departures}</DeparturesText>
-                    <DeparturesTimeSpan>{item.departuresTime}</DeparturesTimeSpan>
+                    <DeparturesTimeSpan>
+                      {item.departuresTime}
+                    </DeparturesTimeSpan>
                   </DeparturesInfoBox>
                   <BsArrowRightCircle />
                   <DestinationInfoBox>
                     <DestinationText>{item.destination}</DestinationText>
-                    <DestinationTimeSpan>{item.destinationTime}</DestinationTimeSpan>
+                    <DestinationTimeSpan>
+                      {item.destinationTime}
+                    </DestinationTimeSpan>
                   </DestinationInfoBox>
                 </ChatInfoBox>
                 <ChatInfoBox2>
@@ -133,7 +87,7 @@ export default function ChatList() {
             );
           })}
         </List>
-        <Link href={"chatlist/new"}>
+        <Link href={`chatlist/new?id=${id}`}>
           <AiOutlinePlusCircle className="button" />
         </Link>
       </Box>

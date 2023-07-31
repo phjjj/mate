@@ -11,16 +11,24 @@ import {
 } from "./page.style";
 import { useEffect, useState } from "react";
 import axios, { AxiosRequestConfig } from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function New() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [chatName, setChatName] = useState<string>("");
-  const [startPoint, setStartPoint] = useState<string>("");
-  const [endPoint, setEndPoint] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
+  const [departures, setDepartures] = useState<string>("");
+  const [destination, setDestination] = useState<string>("");
   const [departureTime, setDepartureTime] = useState<string>("");
-  const [arrivalTime, setArrivalTime] = useState<string>("");
-  const [numberOfPeople, setNumberOfPeople] = useState<number>(1);
+  const [destinationTime, setDestinationTime] = useState<string>("");
+  const [people, setPeople] = useState<number>(1);
+  const [host, setHost] = useState<string>("");
+
+  const params = useSearchParams();
+  let id = "";
+
+  for (const [key, value] of params.entries()) {
+    id = value;
+  }
 
   useEffect(() => {
     setIsLoading(false);
@@ -39,17 +47,18 @@ export default function New() {
       const res = await axios.post(
         `/api/chats`,
         JSON.stringify({
-          chatName,
-          startPoint,
-          endPoint,
+          title,
+          departures,
+          destination,
           departureTime,
-          arrivalTime,
-          numberOfPeople,
+          destinationTime,
+          people,
+          id,
         }),
         { headers }
       );
       if (res.status === 201) {
-        router.push("/chatlist");
+        router.push(`/chatlist?id=${id}`);
       }
     } catch (error) {
       console.log(error);
@@ -59,17 +68,17 @@ export default function New() {
   const chatNameInputChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setChatName(event.target.value);
+    setTitle(event.target.value);
   };
   const startPointInputChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setStartPoint(event.target.value);
+    setDepartures(event.target.value);
   };
   const endPointInputChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setEndPoint(event.target.value);
+    setDestination(event.target.value);
   };
   const departureTimeInputChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -79,12 +88,12 @@ export default function New() {
   const arrivalTimeInputChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setArrivalTime(event.target.value);
+    setDestinationTime(event.target.value);
   };
   const numberOfPeopleInputChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setNumberOfPeople(+event.target.value);
+    setPeople(+event.target.value);
   };
   return (
     <>
@@ -101,20 +110,20 @@ export default function New() {
           <Form onSubmit={handleSubmit}>
             <ChatTitleInput
               onChange={chatNameInputChangeHandler}
-              value={chatName}
+              value={title}
               placeholder=" 채팅방 이름을 입력해주세요."
             />
             <label>출발지와 도착지를 설정해주세요.</label>
             <InputContainer>
               <Input
                 onChange={startPointInputChangeHandler}
-                value={startPoint}
+                value={departures}
                 placeholder="출발지"
               />
               <BsArrowRightCircle size={23} />
               <Input
                 onChange={endPointInputChangeHandler}
-                value={endPoint}
+                value={destination}
                 placeholder="도착지"
               />
             </InputContainer>
@@ -128,7 +137,7 @@ export default function New() {
               <BsArrowRightCircle size={23} />
               <Input
                 onChange={arrivalTimeInputChangeHandler}
-                value={arrivalTime}
+                value={destinationTime}
                 placeholder="도착시간"
               />
             </InputContainer>
@@ -136,7 +145,7 @@ export default function New() {
             <div>
               <Input
                 onChange={numberOfPeopleInputChangeHandler}
-                value={numberOfPeople}
+                value={people}
                 placeholder="인원"
                 type="number"
               />
