@@ -66,12 +66,10 @@ export const ButtonContainer = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   & button {
-    background-color: white;
     width: 100%;
     padding: 0.8rem 2rem;
     border-radius: 0.7rem;
     text-align: center;
-    color: black;
     outline: none;
     border: none;
     margin-bottom: 0.8rem;
@@ -79,4 +77,10 @@ export const ButtonContainer = styled.div`
       margin-bottom: 0rem;
     }
   }
+`;
+
+export const CreateButton = styled.button`
+  background-color: ${(props) => (props.disabled ? "#B4B4B4" : "#4E6AFF")};
+  color: ${(props) => (props.disabled ? "black" : "white")};
+  opacity: ${(props) => (props.disabled ? "0.5" : "1")};
 `;
