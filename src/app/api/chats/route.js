@@ -29,7 +29,7 @@ export async function POST(req, res) {
     chatPeople: [],
   });
 
-  await User.findByIdAndUpdate(id, { chatList: [chat._id] });
+  await User.findByIdAndUpdate(id, { chatList: [...user.chatList, chat._id] });
 
   return NextResponse.json({ message: "Crearted Chat" }, { status: 201 });
 }
