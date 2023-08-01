@@ -4,7 +4,7 @@ const chatSchema = new Schema({
   title: { type: String, required: true },
   departures: { type: String, required: true },
   destination: { type: String, required: true },
-  departureTime: { type: String, required: true },
+  departuresTime: { type: String, required: true },
   destinationTime: { type: String, required: true },
   people: { type: Number, required: true, min: 1, max: 4 },
   host: { type: String, required: true },

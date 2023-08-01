@@ -4,15 +4,7 @@ import Chat from "../../../../models/chat";
 import User from "../../../../models/user";
 
 export async function POST(req, res) {
-  const {
-    title,
-    departures,
-    destination,
-    departureTime,
-    destinationTime,
-    people,
-    id,
-  } = await req.json();
+  const { title, departures, destination, departuresTime, destinationTime, people, id } = await req.json();
 
   await connectMongoDB();
 
@@ -22,7 +14,7 @@ export async function POST(req, res) {
     title,
     departures,
     destination,
-    departureTime,
+    departuresTime,
     destinationTime,
     people,
     host: user.name,
@@ -39,8 +31,5 @@ export async function GET(req, res) {
 
   const chat = await Chat.find({});
 
-  return NextResponse.json(
-    { message: "Read All Chat", chats: chat },
-    { status: 201 }
-  );
+  return NextResponse.json({ message: "Read All Chat", chats: chat }, { status: 201 });
 }
