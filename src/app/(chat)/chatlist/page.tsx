@@ -23,11 +23,10 @@ import {
 } from "./page.style";
 import { BsArrowRightCircle, BsFillBookmarkFill } from "react-icons/bs";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { getAllJSDocTags } from "typescript";
 import axios from "axios";
+
 export default function ChatList() {
   const params = useSearchParams();
   let id;
@@ -41,6 +40,7 @@ export default function ChatList() {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [chatList, setChatList] = useState([]);
+
   const getChatList = async () => {
     const res = await axios.get("/api/chats");
     setChatList(res.data.chats);
@@ -64,16 +64,12 @@ export default function ChatList() {
                 <ChatInfoBox>
                   <DeparturesInfoBox>
                     <DeparturesText>{item.departures}</DeparturesText>
-                    <DeparturesTimeSpan>
-                      {item.departureTime}
-                    </DeparturesTimeSpan>
+                    <DeparturesTimeSpan>{item.departureTime}</DeparturesTimeSpan>
                   </DeparturesInfoBox>
                   <BsArrowRightCircle />
                   <DestinationInfoBox>
                     <DestinationText>{item.destination}</DestinationText>
-                    <DestinationTimeSpan>
-                      {item.destinationTime}
-                    </DestinationTimeSpan>
+                    <DestinationTimeSpan>{item.destinationTime}</DestinationTimeSpan>
                   </DestinationInfoBox>
                 </ChatInfoBox>
                 <ChatInfoBox2>
