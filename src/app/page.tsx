@@ -2,8 +2,6 @@
 
 import { Main, Title, Button } from "@/app/page.style";
 import { useEffect, useState } from "react";
-import { kakaoInit } from "../../utils/kakaoInit";
-import Router from "next/router";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(false);

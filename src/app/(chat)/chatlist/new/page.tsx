@@ -131,13 +131,15 @@ export default function New() {
                 placeholder={"출발지"}
                 onChange={(option) => setDepartures(option?.value)}
                 isSearchable={false}
-                options={departuresOptions}></Select>
+                options={departuresOptions}
+              ></Select>
               <BsArrowRightCircle size={23} />
               <Select
                 placeholder={"도착지"}
                 onChange={(option) => setDestination(option?.value)}
                 isSearchable={false}
-                options={destinationOptions}></Select>
+                options={destinationOptions}
+              ></Select>
             </InputContainer>
             <label>출발시간과 도착시간을 설정해주세요.</label>
             <InputContainer>
@@ -145,13 +147,15 @@ export default function New() {
                 placeholder={"출발시간"}
                 onChange={(option) => setDeparturesTime(option?.value)}
                 isSearchable={false}
-                options={departuresTimeOptions}></Select>
+                options={departuresTimeOptions}
+              ></Select>
               <BsArrowRightCircle size={23} />
               <Select
                 placeholder={"도착시간"}
                 onChange={(option) => setDestinationTime(option?.value)}
                 isSearchable={false}
-                options={destinationTimeOptions}></Select>
+                options={destinationTimeOptions}
+              ></Select>
             </InputContainer>
             <label>인원수를 설정해주세요.</label>
             <div>
@@ -159,7 +163,8 @@ export default function New() {
                 placeholder={"인원수"}
                 onChange={(option) => setPeople(option?.value)}
                 isSearchable={false}
-                options={poepleOptions}></Select>
+                options={poepleOptions}
+              ></Select>
             </div>
             <ButtonContainer>
               <button>취소</button>
@@ -173,7 +178,8 @@ export default function New() {
                   people === 0
                     ? true
                     : false
-                }>
+                }
+              >
                 생성하기
               </CreateButton>
             </ButtonContainer>
