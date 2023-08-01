@@ -114,7 +114,7 @@ export default function New() {
           <Header>
             <div className="title__container">
               <span className="profile__svg">
-                <CgProfile size={29} color="0084FF" />
+                <CgProfile onClick={() => router.push(`/profile/${id}`)} size={29} color="0084FF" />
               </span>
               <h2>채팅방 만들기</h2>
             </div>
