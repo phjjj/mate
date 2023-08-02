@@ -1,4 +1,5 @@
 "use client";
+
 import { styled } from "styled-components";
 
 export const Main = styled.main`
@@ -16,16 +17,4 @@ export const Title = styled.main`
   font-size: 58px;
   font-weight: 400;
   padding-top: 100px;
-`;
-
-export const Button = styled.button`
-  display: flex;
-  width: 312px;
-  min-height: 52px;
-  background-color: #fff;
-  border-radius: 15px;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  cursor: pointer;
 `;
