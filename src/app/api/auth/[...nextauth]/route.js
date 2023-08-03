@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import KakaoProvider from "next-auth/providers/kakao";
-import connectToDB from "@/app/libs/mongodb";
-import User from "@/app/models/user";
+import connectToDB from "@/app/_libs/mongodb";
+import User from "@/app/_models/user";
 
 const handler = NextAuth({
   providers: [

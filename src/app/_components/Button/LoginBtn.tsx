@@ -23,11 +23,11 @@ const LoginBtn = () => {
   const router = useRouter();
 
   const loginHandler = async () => {
-    await signIn("kakao", { callbackUrl: `/chatlist` });
+    await signIn("kakao", { callbackUrl: `/chat-list` });
   };
 
   useEffect(() => {
-    session && router.push("/chatlist");
+    session && router.push("/chat-list");
   }, [session]);
 
   return (

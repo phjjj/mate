@@ -18,14 +18,14 @@ import {
   UserInfoBox,
   UserNameText,
   UsersNumberSpan,
-} from "./ChatComponent.style";
+} from "./ChatListContainer.style";
 import { BsArrowRightCircle, BsFillBookmarkFill } from "react-icons/bs";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-export const Chat = () => {
+export const ChatListContainer = () => {
   const { data: session } = useSession();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -69,11 +69,11 @@ export const Chat = () => {
           );
         })}
       </List>
-      <Link href={`chatlist/new?id=${session?.user?.id}`}>
+      <Link href={`chat-create?id=${session?.user?.id}`}>
         <AiOutlinePlusCircle className="button" />
       </Link>
     </Box>
   );
 };
 
-export default Chat;
+export default ChatListContainer;
