@@ -52,7 +52,7 @@ const Form = () => {
         { headers }
       );
       if (res.status === 201) {
-        router.push(`/chatlist?id=${id}`);
+        router.push(`/chat-list?id=${id}`);
       }
     } catch (error) {
       console.log(error);
@@ -146,7 +146,7 @@ const Form = () => {
           options={poepleOptions}></Select>
       </div>
       <ButtonContainer>
-        <Link href={`/chatlist?id=${id}`}>
+        <Link href={`/chat-list?id=${id}`}>
           <button style={{ cursor: "pointer" }}>취소</button>
         </Link>
         <CreateButton

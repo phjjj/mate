@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import connectMongoDB from "../../libs/mongodb";
-import Chat from "../../models/chat";
-import User from "../../models/user";
+import connectMongoDB from "../../_libs/mongodb";
+import Chat from "../../_models/chat";
+import User from "../../_models/user";
 
 export async function POST(req, res) {
   const { title, departures, destination, departuresTime, destinationTime, people, id } = await req.json();

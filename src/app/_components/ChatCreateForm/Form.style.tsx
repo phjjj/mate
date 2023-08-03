@@ -83,4 +83,5 @@ export const CreateButton = styled.button`
   background-color: ${(props) => (props.disabled ? "#B4B4B4" : "#4E6AFF")};
   color: ${(props) => (props.disabled ? "black" : "white")};
   opacity: ${(props) => (props.disabled ? "0.5" : "1")};
+  cursor: ${(props) => (props.disabled ? "" : "pointer")};
 `;
