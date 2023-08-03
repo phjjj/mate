@@ -3,24 +3,15 @@
 import Link from "next/link";
 import { HomeButton, RedButton, ButtonsBox, Main, ProfileBox, Title, UserImg, UserNameSpan } from "./page.style";
 import { useEffect, useState } from "react";
-import axios, { AxiosHeaders, AxiosRequestConfig } from "axios";
+import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
-import { useRecoilValue } from "recoil";
-import { accessTokenState } from "@/atom/atom";
-import { resolve } from "path/posix";
+import { signOut } from "next-auth/react";
 
 export default function Profile() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [user, setUser] = useState<any>({});
   const { id } = useParams();
   const router = useRouter();
-  const accessToken = useRecoilValue(accessTokenState);
-
-  // kakao logout url
-  const KAKAO_LOGOUT_URL = `https://kapi.kakao.com/v1/user/logout`;
-  const headers: AxiosRequestConfig["headers"] = {
-    Authorization: "Bearer " + accessToken,
-  };
 
   const axiosGetReqUser = async () => {
     const {
@@ -34,14 +25,6 @@ export default function Profile() {
   const onWithdrawal = async () => {
     await axios.delete(`/api/users/profile/${id}`);
     router.push("/");
-  };
-
-  const logout = async () => {
-    const res = await axios.post(KAKAO_LOGOUT_URL, {}, { headers });
-
-    if (res.data.id) {
-      router.push("/");
-    }
   };
 
   useEffect(() => {
@@ -60,7 +43,7 @@ export default function Profile() {
         <Link href={"/chatlist"}>
           <HomeButton>홈으로</HomeButton>
         </Link>
-        <RedButton onClick={logout}>로그아웃</RedButton>
+        <RedButton onClick={async () => await signOut({ callbackUrl: "/" })}>로그아웃</RedButton>
         <RedButton onClick={onWithdrawal}>회원탈퇴</RedButton>
       </ButtonsBox>
     </Main>

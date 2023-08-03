@@ -2,14 +2,37 @@
 
 import React from "react";
 import { Button } from "./LoginBtn.stye";
-const CLIENT_ID = process.env.REST_API_KEY;
-const KAKAO_REDIRECT_URI = process.env.REDIRECT_URI;
+import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
-const kakaoLogin = () =>
-  (window.location.href = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${KAKAO_REDIRECT_URI}`);
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: any;
+      name: String;
+      email: String;
+      kakaoId: Number;
+      image: String;
+    };
+    expires: string;
+  }
+}
 
 const LoginBtn = () => {
-  return <Button onClick={kakaoLogin}>카카오톡으로 로그인하기</Button>;
+  const { data: session } = useSession();
+  const router = useRouter();
+
+  const loginHandler = async () => {
+    await signIn("kakao", { callbackUrl: `/chatlist` });
+  };
+
+  session && router.push("/chatlist");
+
+  return (
+    <Button type="button" onClick={loginHandler}>
+      카카오톡으로 로그인하기
+    </Button>
+  );
 };
 
 export default LoginBtn;
