@@ -1,7 +1,7 @@
 "use client";
 
 import styled from "styled-components";
-import { Button } from "../../page.style";
+import { Button } from "@/app/components/Button/LoginBtn.stye";
 export const Main = styled.main`
   display: flex;
   flex-direction: column;
