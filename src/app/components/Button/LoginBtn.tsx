@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "./LoginBtn.stye";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -26,7 +26,9 @@ const LoginBtn = () => {
     await signIn("kakao", { callbackUrl: `/chatlist` });
   };
 
-  session && router.push("/chatlist");
+  useEffect(() => {
+    session && router.push("/chatlist");
+  }, [session]);
 
   return (
     <Button type="button" onClick={loginHandler}>

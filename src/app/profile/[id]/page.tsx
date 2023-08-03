@@ -24,7 +24,7 @@ export default function Profile() {
   // 회원탈퇴 이벤트 핸들러
   const onWithdrawal = async () => {
     await axios.delete(`/api/users/profile/${id}`);
-    router.push("/");
+    await signOut({ callbackUrl: "/" });
   };
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export default function Profile() {
       <Title>프로필</Title>
       <ProfileBox>
         <UserImg />
-        <UserNameSpan>{user.name}</UserNameSpan>
+        <UserNameSpan>{user?.name}</UserNameSpan>
       </ProfileBox>
       <ButtonsBox>
         <Link href={"/chatlist"}>

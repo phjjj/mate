@@ -12,13 +12,15 @@ const handler = NextAuth({
   ],
   callbacks: {
     async session({ session }) {
-      const sessionUser = await User.findOne({
-        email: session.user.email,
-      });
+      if (session.user) {
+        const sessionUser = await User.findOne({
+          name: session.user.name,
+        });
 
-      // 커스텀 세션 user id
-      session.user.id = sessionUser._id;
-      session.user.kakaoId = sessionUser.kakaoId;
+        // 커스텀 세션 user id
+        session.user.id = sessionUser._id;
+        session.user.kakaoId = sessionUser.kakaoId;
+      }
 
       return session;
     },
@@ -26,6 +28,7 @@ const handler = NextAuth({
       try {
         await connectToDB();
         // 같은 닉네임 존재하는지 검사
+
         const userExists = await User.findOne({
           name: profile.properties.nickname,
         });
