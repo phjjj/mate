@@ -9,7 +9,7 @@ export const Main = styled.main`
   align-items: center;
   gap: 40px;
 `;
-export const TitleBox = styled.div`
+export const TitleBox = styled.h2`
   display: flex;
   margin-top: 50px;
   color: #000;

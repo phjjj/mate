@@ -27,7 +27,7 @@ import { useSession } from "next-auth/react";
 
 export const ChatListContainer = () => {
   const { data: session } = useSession();
-
+  console.log(session);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [chatList, setChatList] = useState([]);
   const getChatList = async () => {
