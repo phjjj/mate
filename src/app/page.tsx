@@ -1,18 +1,11 @@
-"use client";
-
-import { Main, Title, Button } from "@/app/page.style";
-import { useEffect, useState } from "react";
+import { Main, Title } from "@/app/page.style";
+import LoginBtn from "@/app/_components/Button/LoginBtn";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-  }, []);
-  return isLoading ? (
+  return (
     <Main>
       <Title>MATE</Title>
-      <Button>카카오톡으로 로그인하기</Button>
+      <LoginBtn />
     </Main>
-  ) : null;
+  );
 }
