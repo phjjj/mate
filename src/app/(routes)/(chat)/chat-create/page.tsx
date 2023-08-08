@@ -1,4 +1,3 @@
-import { CgProfile } from "react-icons/cg";
 import { Header } from "./page.style";
 import Form from "@/src/app/_components/ChatCreateForm/Form";
 

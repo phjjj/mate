@@ -17,8 +17,9 @@ export async function POST(req, res) {
     departuresTime,
     destinationTime,
     people,
-    host: user.name,
-    chatPeople: [],
+    host: user,
+    member: [],
+    messageList: [],
   });
 
   await User.findByIdAndUpdate(id, { chatList: [...user.chatList, chat._id] });
@@ -29,7 +30,7 @@ export async function POST(req, res) {
 export async function GET(req, res) {
   await connectMongoDB();
 
-  const chat = await Chat.find({});
+  const chat = await Chat.find({}).populate("host");
 
   return NextResponse.json({ message: "Read All Chat", chats: chat }, { status: 201 });
 }

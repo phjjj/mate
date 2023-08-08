@@ -61,7 +61,7 @@ export const ChatListContainer = () => {
               <ChatInfoBox2>
                 <UserInfoBox>
                   <UserImg />
-                  <UserNameText>{item.host}</UserNameText>
+                  <UserNameText>{item.host.name}</UserNameText>
                 </UserInfoBox>
                 <UsersNumberSpan>{item.people}/5</UsersNumberSpan>
               </ChatInfoBox2>
