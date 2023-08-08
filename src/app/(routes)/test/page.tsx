@@ -81,6 +81,7 @@ const page = () => {
     const socket = new (ClientIO as any)(process.env.NEXT_PUBLIC_SITE_URL, {
       path: "/api/socket/io",
       addTrailingSlash: false,
+      cors: { origin: "https://mate-git-develop-phjjj.vercel.app" },
       transports: ["polling", "websocket"],
     });
     console.log(socket);
