@@ -43,7 +43,6 @@ export const ChatListContainer = () => {
     <Box>
       <List>
         {chatList.map((item: any, idx) => {
-          console.log("host : ", item.host);
           return (
             <Item key={idx}>
               <BsFillBookmarkFill className="mark" />

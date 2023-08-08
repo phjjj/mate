@@ -31,6 +31,6 @@ export async function GET(req, res) {
   await connectMongoDB();
 
   const chat = await Chat.find({}).populate("host");
-  console.log("read chat : ", chat);
+
   return NextResponse.json({ message: "Read All Chat", chats: chat }, { status: 201 });
 }
