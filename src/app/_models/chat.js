@@ -6,9 +6,17 @@ const chatSchema = new Schema({
   destination: { type: String, required: true },
   departuresTime: { type: String, required: true },
   destinationTime: { type: String, required: true },
-  people: { type: Number, required: true, min: 1, max: 4 },
-  host: { type: String, required: true },
-  chatPeople: [{ type: Schema.Types.ObjectId, ref: "User" }],
+  people: { type: Number, required: true, min: 1, max: 5 },
+  host: { type: Schema.Types.ObjectId, ref: "User" },
+  member: [{ type: Schema.Types.ObjectId, ref: "User" }],
+  messageList: [
+    {
+      user: { type: Schema.Types.ObjectId, ref: "User" },
+      message: String,
+      createdAt: Date,
+    },
+  ],
+  createdAt: Date,
 });
 
 /*

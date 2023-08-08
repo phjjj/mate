@@ -7,6 +7,10 @@ import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 
+interface IParams {
+  id: String;
+}
+
 export default function Profile() {
   const { data: session } = useSession();
 

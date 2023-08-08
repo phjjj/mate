@@ -102,6 +102,28 @@ const page = () => {
     socket.on("message", (message: IChatMessage) => {
       chatMessages.push(message);
       setChatMessages([...chatMessages]);
+      /*
+        *채팅방 데이터 보낼 형식
+        * 채팅방 라우터 Params id는 방 만든 유저의 id이다.
+        ex) "/chatRoom/:hostId"
+        1.채팅 방 데이터 형식
+        {
+          _id : ObjectId, 채팅방 id
+          host: ObjectId || Object, 채팅방 호스트(채팅방 만든 유저 관계형, 기본적으로 user _id이다, populate),
+          member: Array[ObjectId || Object], 호스트 아닌 유저(관계형)
+          messageList: Array[Object], 채팅 메시지
+          createdAt: Date, 방생성 시간   
+        }
+
+        2.messageList 데이터 형식
+        {
+          user : ObjectId || Object(채팅 보낸 유저 _id 혹은 보낸 유저 데이터, populate),"이 필드로 자기 메시지 보낸 유저의 이름을 출력"
+          message: String,
+          createdAt: Date, 메시지 보낸 시간
+          
+        }
+        3.세션을 이용하여 자기자신 아니면 오른쪽으로 메시지 보어주고 남의 메시지는 왼쪽으로 보여준다.
+      */
     });
 
     // 소켓이 이미 존재하는 경우 disconnet
