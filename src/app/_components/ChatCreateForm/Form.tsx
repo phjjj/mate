@@ -17,7 +17,7 @@ const Form = () => {
   const [people, setPeople] = useState<number | undefined>(0);
   const [host, setHost] = useState<string>("");
 
-  const params = useSearchParams();
+  const params: any = useSearchParams();
   let id = "";
 
   for (const [key, value] of params.entries()) {
