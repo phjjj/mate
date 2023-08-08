@@ -20,6 +20,7 @@ const io = async (req: NextApiRequest, res: NextApiResponseServerIO) => {
     const io = new ServerIO(httpServer, {
       path: path,
       addTrailingSlash: false,
+      cors: { origin: "*" },
     });
 
     // Next.js 소켓 서버 응답에 SocketIO 서버 추가
