@@ -21,6 +21,7 @@ const io = async (req: NextApiRequest, res: NextApiResponseServerIO) => {
       path: path,
       addTrailingSlash: false,
       cors: { origin: "https://mate-git-develop-phjjj.vercel.app" },
+      transports: ["polling", "websocket"],
     });
 
     // Next.js 소켓 서버 응답에 SocketIO 서버 추가
