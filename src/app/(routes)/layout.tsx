@@ -1,4 +1,4 @@
-import "@/app/globals.css";
+// import "@/app/globals.css";
 import Nav from "../_components/Nav/Nav";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

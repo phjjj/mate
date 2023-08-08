@@ -43,6 +43,7 @@ export const ChatListContainer = () => {
     <Box>
       <List>
         {chatList.map((item: any, idx) => {
+          console.log("host : ", item.host);
           return (
             <Item key={idx}>
               <BsFillBookmarkFill className="mark" />
@@ -61,7 +62,7 @@ export const ChatListContainer = () => {
               <ChatInfoBox2>
                 <UserInfoBox>
                   <UserImg />
-                  <UserNameText>{item.host}</UserNameText>
+                  <UserNameText>{item.host.name}</UserNameText>
                 </UserInfoBox>
                 <UsersNumberSpan>{item.people}/5</UsersNumberSpan>
               </ChatInfoBox2>
