@@ -9,12 +9,12 @@ import { signOut, useSession } from "next-auth/react";
 
 export default function Profile() {
   const { data: session } = useSession();
-  console.log(session);
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [user, setUser] = useState<any>({});
-  const { id } = useParams();
+  const { id } = useParams() as { id: string };
   const router = useRouter();
-
+  console.log(useParams());
   const axiosGetReqUser = async () => {
     const {
       data: { user },
