@@ -21,10 +21,8 @@ const io = async (req: NextApiRequest, res: NextApiResponseServerIO) => {
       path: path,
       addTrailingSlash: false,
       cors: { origin: "*" },
-
-      transports: ["polling", "websocket"],
     });
-    console.log(res.socket.server);
+
     // Next.js 소켓 서버 응답에 SocketIO 서버 추가
     res.socket.server.io = io;
   }
