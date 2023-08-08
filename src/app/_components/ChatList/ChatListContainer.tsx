@@ -50,7 +50,7 @@ export const ChatListContainer = () => {
               <ChatInfoBox>
                 <DeparturesInfoBox>
                   <DeparturesText>{item.departures}</DeparturesText>
-                  <DeparturesTimeSpan>{item.departureTime}</DeparturesTimeSpan>
+                  <DeparturesTimeSpan>{item.departuresTime}</DeparturesTimeSpan>
                 </DeparturesInfoBox>
                 <BsArrowRightCircle />
                 <DestinationInfoBox>

@@ -5,11 +5,13 @@ import { io as ClientIO } from "socket.io-client";
 import React, { useState, useEffect, useRef } from "react";
 import { Box } from "./page.style";
 import { useSession } from "next-auth/react";
+
 // 메세지 타입
 interface IChatMessage {
   userName: String | undefined;
   message: String;
 }
+
 const page = () => {
   const inputRef = useRef(null);
   const { data: session } = useSession();
@@ -105,7 +107,7 @@ const page = () => {
     // 소켓이 이미 존재하는 경우 disconnet
     if (socket) return () => socket.disconnect();
   }, []);
-
+  console.log(chatMessages);
   return (
     <Box>
       {chatMessages.length ? (
@@ -123,7 +125,6 @@ const page = () => {
         type="text"
         value={messageInput}
         placeholder={connected ? "Type a message..." : "Connecting..."}
-        className="w-full h-full rounded shadow border px-2 border-gray-600 dark:border-gray-400 text-black dark:text-white"
         disabled={!connected}
         onChange={(e) => {
           setMessageInput(e.target.value);
