@@ -83,7 +83,7 @@ const page = () => {
       addTrailingSlash: false,
       transports: ["polling", "websocket"],
     });
-
+    console.log(socket);
     // on 이란?
     // 클라이언트 또는 서버에서 이벤트에 대한 리스너를 등록하는 데 사용.
     // 이벤트 이름과 이벤트를 처리하기 위한 콜백 함수라는 두 가지 이상의 인수가 필요합니다.
