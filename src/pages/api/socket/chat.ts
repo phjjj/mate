@@ -10,7 +10,7 @@ const chat = async (req: NextApiRequest, res: NextApiResponseServerIO) => {
     // dispatch to channel "message" 서버로 message 내용을 보내기
     // 첫 번째 인수는 이벤트 이름, 두 번째 인수는 전송될 데이터
     res?.socket?.server?.io?.emit("message", message);
-
+    console.log(res.socket.server.io);
     // return message
     res.status(201).json(message);
   }
