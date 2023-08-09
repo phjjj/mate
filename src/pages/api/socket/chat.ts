@@ -3,7 +3,6 @@ import { NextApiRequest } from "next";
 
 const chat = async (req: NextApiRequest, res: NextApiResponseServerIO) => {
   if (req.method === "POST") {
-    console.log("post");
     // get message 클라이언트에서 받은 body 저장
     const message = req.body;
 

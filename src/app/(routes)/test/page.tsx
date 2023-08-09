@@ -25,7 +25,7 @@ const page = () => {
 
   // 다른 사용자에게 메시지 보내기
   const sendApiSocketChat = async (chatMessage: IChatMessage): Promise<Response> => {
-    return await fetch("http://localhost:3001", {
+    return await fetch("/api/socket/chat", {
       method: "POST",
       headers: {
         // 데이터의 type 정보
@@ -79,11 +79,12 @@ const page = () => {
   useEffect((): any => {
     // socket.io 서버와 연결
     const socket = new (ClientIO as any)(process.env.NEXT_PUBLIC_SITE_URL, {
+      path: "/api/socket/io",
       addTrailingSlash: false,
       cors: {},
       transports: ["polling", "websocket"],
     });
-    console.log(socket);
+
     // on 이란?
     // 클라이언트 또는 서버에서 이벤트에 대한 리스너를 등록하는 데 사용.
     // 이벤트 이름과 이벤트를 처리하기 위한 콜백 함수라는 두 가지 이상의 인수가 필요합니다.
