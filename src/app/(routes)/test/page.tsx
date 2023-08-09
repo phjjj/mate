@@ -25,7 +25,7 @@ const page = () => {
 
   // 다른 사용자에게 메시지 보내기
   const sendApiSocketChat = async (chatMessage: IChatMessage): Promise<Response> => {
-    return await fetch("/api/socket/chat", {
+    return await fetch("http://localhost:3001", {
       method: "POST",
       headers: {
         // 데이터의 type 정보
@@ -79,9 +79,8 @@ const page = () => {
   useEffect((): any => {
     // socket.io 서버와 연결
     const socket = new (ClientIO as any)(process.env.NEXT_PUBLIC_SITE_URL, {
-      path: "/api/socket/io",
       addTrailingSlash: false,
-      cors: { origin: "https://mate-git-develop-phjjj.vercel.app" },
+      cors: {},
       transports: ["polling", "websocket"],
     });
     console.log(socket);

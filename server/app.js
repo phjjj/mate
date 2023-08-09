@@ -5,7 +5,7 @@ import http from "http";
 import socketIO from "socket.io";
 
 const app = express();
-const PORT = 3000;
+const PORT = 3001;
 
 // use middleware
 app.use(cors());
@@ -16,7 +16,7 @@ const server = http.createServer(app);
 // created io
 const io = socketIO(server, {
   cors: {
-    origin: "http://localhost:3001",
+    origin: "*",
     mathods: ["GET", "POST"],
   },
 });
