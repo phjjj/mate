@@ -9,7 +9,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <SessionProvider>
         <StyledComponentsRegistry>
-          <body suppressHydrationWarning={true}>{children}</body>
+          <body suppressHydrationWarning={true}>
+            <div id="overlays"></div>
+            {children}
+          </body>
         </StyledComponentsRegistry>
       </SessionProvider>
     </html>
