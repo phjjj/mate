@@ -1,8 +1,9 @@
 // import module
-const express = require("express");
-const cors = require("cors");
-const http = require("http");
-const socketIO = require("socket.io");
+import express from "express";
+import cors from "cors";
+import http from "http";
+import socketIO from "socket.io";
+
 const app = express();
 const PORT = 3000;
 
