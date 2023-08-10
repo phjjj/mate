@@ -34,3 +34,18 @@ export async function GET(req, res) {
 
   return NextResponse.json({ message: "Read All Chat", chats: chat }, { status: 201 });
 }
+
+// 채팅 업데이트
+export async function PATCH(req, res) {
+  const { id, messageList } = await req.json();
+
+  await connectMongoDB();
+
+  const chat = await Chat.findById(id);
+
+  const updatedMessageList = [...chat.messageList, messageList];
+
+  await Chat.findByIdAndUpdate(id, { messageList: updatedMessageList });
+
+  return NextResponse.json({ message: "Updated Chat Message List" }, { status: 201 });
+}
