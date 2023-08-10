@@ -27,10 +27,10 @@ const io = socketIO(server, {
 // io connect
 io.on("connect", (socket) => {
   console.log("A User Connected!!");
+
   //* 클라이언트로부터 메시지 수신
 
   socket.on("message", (message) => {
-    console.log(message);
     io.emit("message", message);
   });
 });
@@ -41,3 +41,11 @@ io.on("connect", (socket) => {
 server.listen(PORT, () => {
   console.log(`Server Listen on Port ${PORT} ✅`);
 });
+
+// 1. namespace 만들기(생략) 하나밖에 필요없어서 디폴트인 "io" 사용
+
+// 2. roomId 만들기 roomId는 chats._id
+
+// 3. socekt.to(roomId).on("message", (message)=>{...})으로 만들기
+
+// 4.
