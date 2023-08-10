@@ -11,6 +11,7 @@ import axios from "axios";
 interface IChatMessage {
   username: String | undefined;
   message: String;
+  createdAt: String;
 }
 
 const page = () => {
@@ -41,7 +42,8 @@ const page = () => {
 
     socket.on("message", (message) => {
       // chatMessages.push(message);
-      setChatMessages((prev) => [...prev, ...chatMessages]);
+      console.log(message);
+      setChatMessages((prev) => [...prev]);
     });
   }, []);
 
@@ -59,24 +61,24 @@ const page = () => {
   // 메시지 전송 시 함수
   const sendMessage = async () => {
     if (messageInput) {
+      const createdAt = currentDate();
+
       const chatMessage: IChatMessage = {
         username: session?.user.name,
         message: messageInput,
+        createdAt,
       };
-
-      const createdAt = currentDate();
 
       setMessageInput("");
       socket.emit("message", chatMessage);
 
-      setChatMessages((prev) => [...prev, chatMessage]);
-
-      console.log("chat messages : ", chatMessages);
-
       await axios.patch("/api/chats", {
-        messageList: { ...chatMessage, createdAt },
+        messageList: chatMessage,
         id: "64d2017846ab7d66be19fc36",
       });
+
+      setChatMessages((prev) => [...prev, chatMessage]);
+      console.log("chat messages : ", chatMessages);
     }
     // 아무것도 입력안하면 input창 포커스
     (inputRef?.current as any).focus();
