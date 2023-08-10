@@ -33,8 +33,12 @@ const page = () => {
     setChatMessages(res.data.messageList);
   };
 
-  useEffect((): any => {
+  // useEffect 분리 한 이유는 소켓에서 메시지 받을때마다 geMessageList 함수 호출 하므로 분리했음.
+  useEffect(() => {
     getMessageList();
+  }, []);
+
+  useEffect((): any => {
     socket.on("connect", () => {
       console.log("SOCKET CONNECTED!", socket.id);
       setConnected(true);
@@ -43,7 +47,7 @@ const page = () => {
     socket.on("message", (message) => {
       // chatMessages.push(message);
       console.log(message);
-      setChatMessages((prev) => [...prev]);
+      setChatMessages((prev) => [...prev, message]);
     });
   }, []);
 
@@ -73,12 +77,11 @@ const page = () => {
       socket.emit("message", chatMessage);
 
       await axios.patch("/api/chats", {
-
         messageList: { username: chatMessage.username, message: chatMessage.message, createdAt },
         id: "64d2017846ab7d66be19fc36",
       });
 
-      setChatMessages((prev) => [...prev, chatMessage]);
+      // setChatMessages((prev) => [...prev, chatMessage]); // 이 코드를 사용하니까 실시간 채팅이 안되더라고 주석 처리 했어.
       console.log("chat messages : ", chatMessages);
     }
     // 아무것도 입력안하면 input창 포커스
