@@ -40,8 +40,8 @@ const page = () => {
     });
 
     socket.on("message", (message) => {
-      chatMessages.push(message);
-      setChatMessages((prev) => [...chatMessages]);
+      // chatMessages.push(message);
+      setChatMessages((prev) => [...prev, ...chatMessages]);
     });
   }, []);
 
@@ -70,6 +70,8 @@ const page = () => {
       socket.emit("message", chatMessage);
 
       setChatMessages((prev) => [...prev, chatMessage]);
+
+      console.log("chat messages : ", chatMessages);
 
       await axios.patch("/api/chats", {
         messageList: { ...chatMessage, createdAt },
