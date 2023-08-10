@@ -29,7 +29,6 @@ export const ChatListContainer = () => {
   const { data: session } = useSession();
   const [modal, setModal] = useState(false);
 
-  console.log(session);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [chatList, setChatList] = useState([]);
   const getChatList = async () => {
