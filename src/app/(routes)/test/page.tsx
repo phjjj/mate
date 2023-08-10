@@ -74,7 +74,7 @@ const page = () => {
       console.log("chat messages : ", chatMessages);
 
       await axios.patch("/api/chats", {
-        messageList: { ...chatMessage, createdAt },
+        messageList: { username: chatMessage.username, message: chatMessage.message, createdAt },
         id: "64d2017846ab7d66be19fc36",
       });
     }
