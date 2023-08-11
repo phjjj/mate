@@ -24,7 +24,7 @@ const page = () => {
   const [chatMessages, setChatMessages] = useState<IChatMessage[]>([]);
   const [messageInput, setMessageInput] = useState<string>("");
   const { id } = useParams() as { id: string };
-  const socket = io("ec2-15-164-251-113.ap-northeast-2.compute.amazonaws.com", {
+  const socket = io("ec2-15-164-251-113.ap-northeast-2.compute.amazonaws.com:3001", {
     auth: { id },
   });
 
