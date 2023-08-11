@@ -24,13 +24,16 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import Modal, { Backdrop } from "../Modal/Modal";
+import { useRouter } from "next/navigation";
 
 export const ChatListContainer = () => {
   const { data: session } = useSession();
   const [modal, setModal] = useState(false);
-
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [chatList, setChatList] = useState([]);
+  const [chatListId, setChatListId] = useState("");
+  const router = useRouter();
+
   const getChatList = async () => {
     const res = await axios.get("/api/chats");
     setChatList(res.data.chats);
@@ -41,6 +44,16 @@ export const ChatListContainer = () => {
     setIsLoading(true);
   }, []);
 
+  // 채팅방 클릭 할때 실행하는 핸들러
+  const clickChatList = (id: string) => {
+    setChatListId(id);
+    setModal(true);
+  };
+
+  const redirectChatRoom = () => {
+    router.push(`/chat-room/${chatListId}`);
+  };
+
   const showBackdrop = modal && <Backdrop onClick={() => setModal(false)} />;
 
   const showModal = modal && (
@@ -48,7 +61,7 @@ export const ChatListContainer = () => {
       <h1>채팅방 입장 하시겠습니까?</h1>
       <div>
         <button onClick={() => setModal(false)}>취소</button>
-        <button>입장</button>
+        <button onClick={redirectChatRoom}>입장</button>
       </div>
     </Modal>
   );
@@ -61,7 +74,7 @@ export const ChatListContainer = () => {
         <List>
           {chatList.map((item: any, idx) => {
             return (
-              <Item key={idx} onClick={() => setModal(true)}>
+              <Item key={idx} onClick={() => clickChatList(item._id)}>
                 <BsFillBookmarkFill className="mark" />
                 <ItemTitleBox>{item.title}</ItemTitleBox>
                 <ChatInfoBox>
