@@ -6,6 +6,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Box } from "./page.style";
 import { useSession } from "next-auth/react";
 import axios from "axios";
+import { useParams } from "next/navigation";
 
 // 메세지 타입
 interface IChatMessage {
@@ -22,12 +23,12 @@ const page = () => {
   // 채팅 및 메시지 초기화 (chatMessages 안에 대화 내용들이 다 들어감)
   const [chatMessages, setChatMessages] = useState<IChatMessage[]>([]);
   const [messageInput, setMessageInput] = useState<string>("");
-
   const socket = io("http://localhost:3001");
+  const { id } = useParams() as { id: string };
 
   // DB에서 해당 채팅방 메시지 리스트 불러오기
   const getMessageList = async () => {
-    const res = await axios.get(`/api/chats/64d2017846ab7d66be19fc36`);
+    const res = await axios.get(`/api/chats/${id}`);
 
     console.log("get message list res : ", res.data.messageList);
     setChatMessages(res.data.messageList);
@@ -78,7 +79,7 @@ const page = () => {
 
       await axios.patch("/api/chats", {
         messageList: { username: chatMessage.username, message: chatMessage.message, createdAt },
-        id: "64d2017846ab7d66be19fc36",
+        id,
       });
 
       // setChatMessages((prev) => [...prev, chatMessage]); // 이 코드를 사용하니까 실시간 채팅이 안되더라고 주석 처리 했어.
