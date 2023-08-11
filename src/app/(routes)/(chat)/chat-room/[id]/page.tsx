@@ -24,7 +24,7 @@ const page = () => {
   const [chatMessages, setChatMessages] = useState<IChatMessage[]>([]);
   const [messageInput, setMessageInput] = useState<string>("");
   const { id } = useParams() as { id: string };
-  const socket = io("http://localhost:3001", {
+  const socket = io("https://port-0-mate-eu1k2lll6arm4h.sel3.cloudtype.app/", {
     auth: { id },
   });
 
