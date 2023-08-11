@@ -19,7 +19,7 @@ const server = http.createServer(app);
 // created io
 const io = socketIO(server, {
   cors: {
-    origin: "https://mate-git-develop-phjjj.vercel.app",
+    origin: "*",
     mathods: ["GET", "POST"],
   },
 });
