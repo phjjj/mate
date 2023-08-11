@@ -23,8 +23,10 @@ const page = () => {
   // 채팅 및 메시지 초기화 (chatMessages 안에 대화 내용들이 다 들어감)
   const [chatMessages, setChatMessages] = useState<IChatMessage[]>([]);
   const [messageInput, setMessageInput] = useState<string>("");
-  const socket = io("http://localhost:3001");
   const { id } = useParams() as { id: string };
+  const socket = io("http://localhost:3001", {
+    auth: { id },
+  });
 
   // DB에서 해당 채팅방 메시지 리스트 불러오기
   const getMessageList = async () => {
@@ -42,6 +44,7 @@ const page = () => {
   useEffect((): any => {
     socket.on("connect", () => {
       console.log("SOCKET CONNECTED!", socket.id);
+      console.log(socket);
       setConnected(true);
     });
 

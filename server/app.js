@@ -27,11 +27,13 @@ const io = socketIO(server, {
 // io connect
 io.on("connect", (socket) => {
   console.log("A User Connected!!");
-  //* 클라이언트로부터 메시지 수신
+  const roomId = socket.handshake.auth.id;
+  socket.join(roomId);
+
+  socket.to(roomId).emit("join");
 
   socket.on("message", (message) => {
-    console.log(message);
-    io.emit("message", message);
+    socket.to(roomId).emit("message", message);
   });
 });
 
@@ -41,3 +43,6 @@ io.on("connect", (socket) => {
 server.listen(PORT, () => {
   console.log(`Server Listen on Port ${PORT} ✅`);
 });
+
+// 1. 네임스페이스로 연결 시켜줌, 우리는 필요한 네임스페이스가 하나밖에없어서  디폴트값인 "/" 자동 연결
+// 2. 방마다 roomId 사용, 이거는 각 채팅방 _id를 넘겨서 받아서 join
