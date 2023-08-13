@@ -3,6 +3,7 @@ import connectMongoDB from "../../_libs/mongodb";
 import Chat from "../../_models/chat";
 import User from "../../_models/user";
 
+// created Chat
 export async function POST(req, res) {
   const { title, departures, destination, departuresTime, destinationTime, people, id } = await req.json();
 
