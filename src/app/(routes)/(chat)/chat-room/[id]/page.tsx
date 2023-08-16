@@ -30,7 +30,7 @@ interface IChatMessage {
 // 메세지 안에 들어가는 유저타입
 interface Iuser {
   _id: string;
-  profileImg: string;
+  profileImage: string;
   name: string;
 }
 const page = () => {
@@ -50,7 +50,6 @@ const page = () => {
 
   // 세션이 없으면 로그인 창으로 리다이렉트
   if (session === null) {
-    console.log("실행");
     redirect("/");
   }
 
@@ -123,7 +122,7 @@ const page = () => {
     // 아무것도 입력안하면 input창 포커스
     (inputRef?.current as any).focus();
   };
-  console.log(session);
+
   return (
     <Main>
       <TitleBox>{title}</TitleBox>
@@ -137,7 +136,7 @@ const page = () => {
             </Chatting>
           ) : (
             <Chatting flexdirection="row" key={"_msg" + i}>
-              <ProfileImg src={chatMessage.user.profileImg as any} />
+              <ProfileImg src={chatMessage.user.profileImage as any} />
               <MessageBox>
                 <NameSpan>{`${chatMessage.user.name}`}</NameSpan>
                 <MessageSpan>{chatMessage.message}</MessageSpan>
