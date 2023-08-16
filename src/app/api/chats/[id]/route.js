@@ -10,8 +10,7 @@ export async function GET(req, res) {
   await connectMongoDB();
 
   const chat = await Chat.findById(id);
-
-  return NextResponse.json({ message: "Read Chat", messageList: chat.messageList }, { status: 201 });
+  return NextResponse.json({ message: "Read Chat", messageList: chat.messageList, title: chat.title }, { status: 201 });
 }
 
 // 채팅방 멤버 추가하가
