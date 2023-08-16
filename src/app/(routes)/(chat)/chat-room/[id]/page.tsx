@@ -53,13 +53,11 @@ const page = () => {
     redirect("/");
   }
 
-  // console.log(session);
   // DB에서 해당 채팅방 메시지 리스트 불러오기
   const getMessageList = async () => {
     const res = await axios.get(`/api/chats/${id}`);
     setTitle(res.data.title);
     setChatMessages(res.data.messageList);
-    //  console.log(res);
   };
 
   // useEffect 분리 한 이유는 소켓에서 메시지 받을때마다 geMessageList 함수 호출 하므로 분리했음.
@@ -122,13 +120,14 @@ const page = () => {
     // 아무것도 입력안하면 input창 포커스
     (inputRef?.current as any).focus();
   };
-
+  console.log(chatMessages);
+  console.log(session);
   return (
     <Main>
       <TitleBox>{title}</TitleBox>
       <ChattingContentBox ref={scrollRef as any}>
         {chatMessages.map((chatMessage, i) =>
-          chatMessage.user._id === session?.user.id ? (
+          chatMessage.user._id === session?.user.id || chatMessage.user === session.user.id ? (
             <Chatting flexdirection="row-reverse" key={"_msg" + i}>
               <MessageBox>
                 <SendMessageSpan>{chatMessage.message}</SendMessageSpan>
