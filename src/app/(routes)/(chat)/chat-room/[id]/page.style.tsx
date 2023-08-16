@@ -22,12 +22,13 @@ export const TitleBox = styled.h2`
 `;
 export const ChattingContentBox = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   padding-bottom: 100px;
   overflow: scroll;
   border-top: 0.1px solid;
   margin-top: 20px;
   margin-bottom: -20px;
+  width: 100%;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -36,7 +37,7 @@ export const Chatting = styled.div<{ flexdirection: string }>`
   display: flex;
   flex-direction: ${(props) => props.flexdirection};
   gap: 10px;
-  width: 100%;
+
   margin: 2px;
 `;
 export const ProfileImg = styled.img`
