@@ -159,7 +159,9 @@ export const ChatListContainer = () => {
                     <UserImg src={item.host.profileImage} />
                     <UserNameText>{item.host.name}</UserNameText>
                   </UserInfoBox>
-                  <UsersNumberSpan>{item.people}/5</UsersNumberSpan>
+                  <UsersNumberSpan>
+                    {item.member.length + 1}/{item.people}
+                  </UsersNumberSpan>
                 </ChatInfoBox2>
               </Item>
             );
