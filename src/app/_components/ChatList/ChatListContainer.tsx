@@ -121,7 +121,7 @@ export const ChatListContainer = () => {
   */
 
   const showBackdrop = modal && <Backdrop onClick={() => setModal(false)} />;
-
+  console.log(chatList);
   const showModal = modal && (
     <Modal>
       <h1>채팅방 입장 하시겠습니까?</h1>
@@ -156,7 +156,7 @@ export const ChatListContainer = () => {
                 </ChatInfoBox>
                 <ChatInfoBox2>
                   <UserInfoBox>
-                    <UserImg />
+                    <UserImg src={item.host.profileImage} />
                     <UserNameText>{item.host.name}</UserNameText>
                   </UserInfoBox>
                   <UsersNumberSpan>{item.people}/5</UsersNumberSpan>
