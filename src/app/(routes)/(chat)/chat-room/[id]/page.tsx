@@ -19,16 +19,20 @@ import {
 } from "./page.style";
 import { useSession } from "next-auth/react";
 import axios from "axios";
-import { useParams } from "next/navigation";
+import { redirect, useParams } from "next/navigation";
 
 // 메세지 타입
 interface IChatMessage {
-  username: String | undefined;
+  user: Iuser;
   message: String;
-  profileImg: String | undefined;
   createdAt: String;
 }
-
+// 메세지 안에 들어가는 유저타입
+interface Iuser {
+  _id: string;
+  profileImg: string;
+  name: string;
+}
 const page = () => {
   const inputRef = useRef(null);
   const scrollRef = useRef(null);
@@ -44,12 +48,19 @@ const page = () => {
     auth: { id },
   });
 
+  // 세션이 없으면 로그인 창으로 리다이렉트
+  if (session === null) {
+    console.log("실행");
+    redirect("/");
+  }
+
+  // console.log(session);
   // DB에서 해당 채팅방 메시지 리스트 불러오기
   const getMessageList = async () => {
     const res = await axios.get(`/api/chats/${id}`);
     setTitle(res.data.title);
     setChatMessages(res.data.messageList);
-    console.log(res);
+    //  console.log(res);
   };
 
   // useEffect 분리 한 이유는 소켓에서 메시지 받을때마다 geMessageList 함수 호출 하므로 분리했음.
@@ -89,8 +100,7 @@ const page = () => {
     if (messageInput) {
       const createdAt = currentDate();
       const chatMessage: IChatMessage = {
-        username: session?.user.name,
-        profileImg: session?.user.image,
+        user: session?.user.id,
         message: messageInput,
         createdAt,
       };
@@ -100,27 +110,26 @@ const page = () => {
 
       await axios.patch("/api/chats", {
         messageList: {
-          username: chatMessage.username,
+          user: session?.user.id,
           message: chatMessage.message,
           createdAt,
-          profileImg: chatMessage.profileImg,
         },
         id,
       });
 
       // setChatMessages((prev) => [...prev, chatMessage]); // 이 코드를 사용하니까 실시간 채팅이 안되더라고 주석 처리 했어.
-      console.log("chat messages : ", chatMessages);
+      // console.log("chat messages : ", chatMessages);
     }
     // 아무것도 입력안하면 input창 포커스
     (inputRef?.current as any).focus();
   };
-
+  console.log(session);
   return (
     <Main>
       <TitleBox>{title}</TitleBox>
       <ChattingContentBox ref={scrollRef as any}>
         {chatMessages.map((chatMessage, i) =>
-          chatMessage.username === session?.user.name ? (
+          chatMessage.user._id === session?.user.id ? (
             <Chatting flexdirection="row-reverse" key={"_msg" + i}>
               <MessageBox>
                 <SendMessageSpan>{chatMessage.message}</SendMessageSpan>
@@ -128,9 +137,9 @@ const page = () => {
             </Chatting>
           ) : (
             <Chatting flexdirection="row" key={"_msg" + i}>
-              <ProfileImg src={chatMessage.profileImg as any} />
+              <ProfileImg src={chatMessage.user.profileImg as any} />
               <MessageBox>
-                <NameSpan>{`${chatMessage.username}`}</NameSpan>
+                <NameSpan>{`${chatMessage.user.name}`}</NameSpan>
                 <MessageSpan>{chatMessage.message}</MessageSpan>
               </MessageBox>
             </Chatting>
