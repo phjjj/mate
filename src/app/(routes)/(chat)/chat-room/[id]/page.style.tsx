@@ -1,11 +1,13 @@
 import { styled } from "styled-components";
-export const Main = styled.main`
+
+export const Main = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: 750px;
   margin: 0 auto;
-  align-items: center;
-  overflow: hidden;
-  height: 100%;
 `;
 export const TitleBox = styled.h2`
   display: flex;
@@ -20,41 +22,46 @@ export const TitleBox = styled.h2`
   letter-spacing: 0.667px;
   text-transform: uppercase;
 `;
-export const ChattingContentBox = styled.div`
+export const ContentsBox = styled.div`
   display: flex;
   flex-direction: column;
-  padding-bottom: 100px;
-  overflow: scroll;
-
-  margin-top: 20px;
-  margin-bottom: -20px;
+  flex: 1;
+  min-height: 0;
   width: 100%;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  max-width: 750px;
+  margin: 0 auto;
 `;
-export const Chatting = styled.div<{ flexdirection: string }>`
+
+export const ChatBox = styled.div`
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+`;
+
+export const Chatting = styled.li<{ flexdirection: string }>`
   display: flex;
+  padding: 8px;
   flex-direction: ${(props) => props.flexdirection};
-  gap: 10px;
-  margin: 2px;
 `;
 export const ProfileImg = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 20px;
+  background-color: red;
 `;
 // 메시지,이름 박스
-export const MessageBox = styled.div``;
+export const MessageBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+`;
 
 export const NameSpan = styled.span`
-  display: flex;
   font-size: 12px;
 `;
 
 export const SendMessageSpan = styled.span`
   display: flex;
-  position: relative;
   background: white;
   border-radius: 0.4em;
   font-family: "Noto Sans KR", sans-serif;
@@ -93,21 +100,42 @@ export const MessageSpan = styled.span`
 `;
 
 export const InputBox = styled.div`
-  display: flex;
-  width: 100vw;
-  min-height: 30px;
-  position: fixed;
-  bottom: 0;
+  position: relative;
+  min-height: 50px;
+  padding: 7px 55px 7px 16px;
+  box-sizing: border-box;
+  background-color: #fff;
 `;
 
 export const Input = styled.input`
-  display: flex;
-  width: 90vw;
+  overflow-y: auto;
+  width: 100%;
+  max-height: 57px;
+  border: 0 none;
+  font-size: 10px;
+  line-height: 1.33em;
+  background-color: #f5f6f8;
+  font-family: Apple SD Gothic Neo, 맑은 고딕, Malgun Gothic, 돋움, dotum, sans-serif;
+  resize: none;
+  outline: transparent;
+  color: #000;
+  vertical-align: top;
+  border-radius: 20px;
+  padding: 9px 70px 7px 10px;
+  box-sizing: border-box;
+  background-color: #f5f6f8;
 `;
 
 export const Button = styled.button`
-  background-color: ${(props) => (props.disabled ? "#B4B4B4" : "#4E6AFF")};
-  color: ${(props) => (props.disabled ? "#797575" : "white")};
+  position: absolute;
+  overflow: hidden;
+  height: 36px;
+  padding: 0 5px;
+  bottom: 10px;
+  right: 0;
+  margin-right: 12px;
+  background-color: #fff;
+  border: none;
+  color: ${(props) => (props.disabled ? "#797575" : "#4E6AFF")};
   cursor: ${(props) => (props.disabled ? "" : "pointer")};
-  width: 20%;
 `;

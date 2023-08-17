@@ -6,12 +6,13 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   Button,
   Chatting,
-  ChattingContentBox,
+  ContentsBox,
   Input,
   InputBox,
   Main,
   NameSpan,
   TitleBox,
+  ChatBox,
   MessageSpan,
   ProfileImg,
   MessageBox,
@@ -20,6 +21,7 @@ import {
 import { useSession } from "next-auth/react";
 import axios from "axios";
 import { redirect, useParams } from "next/navigation";
+import { BsArrowRightCircle } from "react-icons/bs";
 
 // 메세지 타입
 interface IChatMessage {
@@ -124,45 +126,50 @@ const page = () => {
   console.log(session);
   return (
     <Main>
-      <TitleBox>{title}</TitleBox>
-      <ChattingContentBox ref={scrollRef as any}>
-        {chatMessages.map((chatMessage, i) =>
-          chatMessage.user._id === session?.user.id || chatMessage.user === session?.user.id ? (
-            <Chatting flexdirection="row-reverse" key={"_msg" + i}>
-              <MessageBox>
-                <SendMessageSpan>{chatMessage.message}</SendMessageSpan>
-              </MessageBox>
-            </Chatting>
-          ) : (
-            <Chatting flexdirection="row" key={"_msg" + i}>
-              <ProfileImg src={chatMessage.user.profileImage as any} />
-              <MessageBox>
-                <NameSpan>{`${chatMessage.user.name}`}</NameSpan>
-                <MessageSpan>{chatMessage.message}</MessageSpan>
-              </MessageBox>
-            </Chatting>
-          )
-        )}
-      </ChattingContentBox>
-      <InputBox>
-        <Input
-          ref={inputRef}
-          type="text"
-          value={messageInput}
-          disabled={!connected}
-          onChange={(e) => {
-            setMessageInput(e.target.value);
-          }}
-          onKeyUp={(e) => {
-            if (e.key === "Enter") {
-              sendMessage();
-            }
-          }}
-        />
-        <Button disabled={messageInput ? false : true} onClick={(e) => sendMessage()}>
-          전송
-        </Button>
-      </InputBox>
+      {/* <TitleBox>{title}</TitleBox> */}
+      <ContentsBox>
+        <ChatBox ref={scrollRef as any}>
+          <ul>
+            {chatMessages.map((chatMessage, i) =>
+              chatMessage.user._id === session?.user.id || chatMessage.user === session?.user.id ? (
+                <Chatting flexdirection="row-reverse" key={"_msg" + i}>
+                  <MessageBox>
+                    <SendMessageSpan>{chatMessage.message}</SendMessageSpan>
+                  </MessageBox>
+                </Chatting>
+              ) : (
+                <Chatting flexdirection="row" key={"_msg" + i}>
+                  <ProfileImg src={chatMessage.user.profileImage as any} />
+                  <MessageBox>
+                    <NameSpan>{`${chatMessage.user.name}`}</NameSpan>
+                    <MessageSpan>{chatMessage.message}</MessageSpan>
+                  </MessageBox>
+                </Chatting>
+              )
+            )}
+          </ul>
+        </ChatBox>
+        <InputBox>
+          <Input
+            placeholder=" 메시지를 입력하세요"
+            ref={inputRef}
+            type="text"
+            value={messageInput}
+            disabled={!connected}
+            onChange={(e) => {
+              setMessageInput(e.target.value);
+            }}
+            onKeyUp={(e) => {
+              if (e.key === "Enter") {
+                sendMessage();
+              }
+            }}
+          />
+          <Button disabled={messageInput ? false : true} onClick={(e) => sendMessage()}>
+            <BsArrowRightCircle fontWeight={20} size={22} />
+          </Button>
+        </InputBox>
+      </ContentsBox>
     </Main>
   );
 };
