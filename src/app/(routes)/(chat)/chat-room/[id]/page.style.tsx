@@ -25,7 +25,7 @@ export const ChattingContentBox = styled.div`
   flex-direction: column;
   padding-bottom: 100px;
   overflow: scroll;
-  border-top: 0.1px solid;
+
   margin-top: 20px;
   margin-bottom: -20px;
   width: 100%;
@@ -37,7 +37,6 @@ export const Chatting = styled.div<{ flexdirection: string }>`
   display: flex;
   flex-direction: ${(props) => props.flexdirection};
   gap: 10px;
-
   margin: 2px;
 `;
 export const ProfileImg = styled.img`
@@ -96,7 +95,7 @@ export const MessageSpan = styled.span`
 export const InputBox = styled.div`
   display: flex;
   width: 100vw;
-  min-height: 70px;
+  min-height: 30px;
   position: fixed;
   bottom: 0;
 `;

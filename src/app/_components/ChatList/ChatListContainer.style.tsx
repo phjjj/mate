@@ -3,14 +3,14 @@ import { styled } from "styled-components";
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
-
+  align-items: center;
   a {
     display: flex;
     margin: 0 auto;
     margin-top: 50px;
 
     .button {
-      color: white;
+      color: #74b9ff;
       font-size: 50px;
     }
   }
@@ -20,7 +20,6 @@ export const List = styled.ul`
   flex-direction: column;
   gap: 10px;
   overflow: auto;
-  height: 600px;
 `;
 export const Item = styled.li`
   position: relative;

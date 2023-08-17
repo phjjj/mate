@@ -49,9 +49,9 @@ const page = () => {
   });
 
   // 세션이 없으면 로그인 창으로 리다이렉트
-  if (session === null) {
-    redirect("/");
-  }
+  // if (session === null) {
+  //   redirect("/");
+  // }
 
   // DB에서 해당 채팅방 메시지 리스트 불러오기
   const getMessageList = async () => {
@@ -127,7 +127,7 @@ const page = () => {
       <TitleBox>{title}</TitleBox>
       <ChattingContentBox ref={scrollRef as any}>
         {chatMessages.map((chatMessage, i) =>
-          chatMessage.user._id === session?.user.id || chatMessage.user === session.user.id ? (
+          chatMessage.user._id === session?.user.id || chatMessage.user === session?.user.id ? (
             <Chatting flexdirection="row-reverse" key={"_msg" + i}>
               <MessageBox>
                 <SendMessageSpan>{chatMessage.message}</SendMessageSpan>
