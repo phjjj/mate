@@ -2,22 +2,24 @@
 
 import styled from "styled-components";
 import { Button } from "@/src/app/_components/Button/LoginBtn.style";
-export const Main = styled.main`
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  align-items: center;
-  gap: 100px;
+export const Main = styled.div`
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: absolute;
+  top: 56px;
+  left: 0;
+  right: 0;
+  bottom: 0;
 `;
 
 export const Title = styled.div`
-  color: #fff;
   text-align: center;
   font-family: Poppins;
   font-size: 30px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  padding: 20px;
 `;
 export const ProfileBox = styled.div`
   display: flex;
@@ -45,6 +47,7 @@ export const ButtonsBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  align-items: center;
   margin-top: 100px;
   a {
     text-decoration-line: none;
