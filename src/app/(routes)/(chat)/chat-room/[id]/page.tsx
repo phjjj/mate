@@ -126,7 +126,7 @@ const page = () => {
   console.log(session);
   return (
     <Main>
-      {/* <TitleBox>{title}</TitleBox> */}
+      <TitleBox>{title}</TitleBox>
       <ContentsBox>
         <ChatBox ref={scrollRef as any}>
           <ul>

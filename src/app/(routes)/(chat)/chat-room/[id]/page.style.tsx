@@ -11,8 +11,9 @@ export const Main = styled.div`
 `;
 export const TitleBox = styled.h2`
   display: flex;
-  margin-top: 50px;
+  padding: 10px;
   color: #000;
+  margin: 0 auto;
   text-align: center;
   font-family: Archivo Black;
   font-size: 30px;
