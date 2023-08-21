@@ -41,6 +41,7 @@ export const ChatBox = styled.div`
 
 export const Chatting = styled.li<{ flexdirection: string }>`
   display: flex;
+  position: relative;
   padding: 8px;
   flex-direction: ${(props) => props.flexdirection};
 `;
@@ -54,11 +55,23 @@ export const ProfileImg = styled.img`
 export const MessageBox = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
   margin-left: 10px;
 `;
 
 export const NameSpan = styled.span`
   font-size: 12px;
+`;
+
+export const TimeSpan = styled.span<{ left: string; right: string; textAlign: string }>`
+  position: absolute;
+  font-size: 10px;
+  bottom: 0;
+  right: ${(props) => props.right};
+  text-align: ${(props) => props.textAlign};
+  left: ${(props) => props.left};
+  min-width: 83px;
+  padding: 0 5px 0;
 `;
 
 export const SendMessageSpan = styled.span`

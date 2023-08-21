@@ -16,6 +16,7 @@ import {
   MessageSpan,
   ProfileImg,
   MessageBox,
+  TimeSpan,
   SendMessageSpan,
 } from "./page.style";
 import { useSession } from "next-auth/react";
@@ -97,7 +98,7 @@ const page = () => {
   // 메시지 전송 시 함수
   const sendMessage = async () => {
     if (messageInput) {
-      const createdAt = currentDate();
+      const createdAt = new Date().toLocaleTimeString("ko-KR", { hour: "numeric", minute: "numeric" });
       const chatMessage: IChatMessage = {
         user: session?.user.id,
         message: messageInput,
@@ -135,6 +136,9 @@ const page = () => {
                 <Chatting flexdirection="row-reverse" key={"_msg" + i}>
                   <MessageBox>
                     <SendMessageSpan>{chatMessage.message}</SendMessageSpan>
+                    <TimeSpan textAlign="right" right="100%" left="">
+                      {chatMessage.createdAt}
+                    </TimeSpan>
                   </MessageBox>
                 </Chatting>
               ) : (
@@ -143,6 +147,9 @@ const page = () => {
                   <MessageBox>
                     <NameSpan>{`${chatMessage.user.name}`}</NameSpan>
                     <MessageSpan>{chatMessage.message}</MessageSpan>
+                    <TimeSpan textAlign="left" left="100%" right="">
+                      {chatMessage.createdAt}
+                    </TimeSpan>
                   </MessageBox>
                 </Chatting>
               )
