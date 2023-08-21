@@ -46,7 +46,10 @@ export async function PATCH(req, res) {
 
   const updatedMessageList = [...chat.messageList, messageList];
 
-  await Chat.findByIdAndUpdate(id, { messageList: updatedMessageList });
+  const updateChat = await Chat.findByIdAndUpdate(id, { messageList: updatedMessageList }).populate("messageList.user");
 
-  return NextResponse.json({ message: "Updated Chat Message List" }, { status: 201 });
+  return NextResponse.json(
+    { message: "Updated Chat Message List", messageList: updateChat.messageList },
+    { status: 201 }
+  );
 }
