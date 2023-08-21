@@ -14,11 +14,14 @@ export const ModalOverlay = (props: any) => {
 };
 
 const Modal = (props: any) => {
-  const portalElement = document.querySelector("#overlays") as HTMLElement;
+  // const portalElement = document.querySelector("#overlays") as HTMLElement;
   return (
     <>
-      {ReactDom.createPortal(<Backdrop onClick={props.onClick} />, portalElement)}
-      {ReactDom.createPortal(<ModalOverlay>{props.children}</ModalOverlay>, portalElement)}
+      {/* {ReactDom.createPortal(<Backdrop onClick={props.onClick} />, portalElement)}
+      {ReactDom.createPortal(<ModalOverlay>{props.children}</ModalOverlay>, portalElement)} */}
+
+      <Backdrop onClick={props.onClick} />
+      <ModalOverlay>{props.children}</ModalOverlay>
     </>
   );
 };
