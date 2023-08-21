@@ -10,8 +10,6 @@ export async function GET(req, res) {
   await connectMongoDB();
 
   const chat = await Chat.findById(id);
-  await User.populate(chat.messageList, { path: "user" });
-
   return NextResponse.json({ message: "Read Chat", messageList: chat.messageList, title: chat.title }, { status: 201 });
 }
 
@@ -19,8 +17,6 @@ export async function GET(req, res) {
 export async function PATCH(req, res) {
   const { id } = res.params;
   const { memberId } = await req.json();
-
-  console.log(typeof memberId);
 
   const member = await User.findById(memberId);
 

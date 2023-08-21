@@ -29,12 +29,14 @@ interface IChatMessage {
   user: Iuser;
   message: String;
   createdAt: String;
+  profileImage: any;
+  name: any;
 }
 // 메세지 안에 들어가는 유저타입
 interface Iuser {
   _id: string;
-  profileImage: string;
-  name: string;
+  profileImage: any;
+  name: any;
 }
 const page = () => {
   const inputRef = useRef(null);
@@ -59,8 +61,8 @@ const page = () => {
   // DB에서 해당 채팅방 메시지 리스트 불러오기
   const getMessageList = async () => {
     const res = await axios.get(`/api/chats/${id}`);
-    setTitle(res.data.title);
-    setChatMessages(res.data.messageList);
+    setTitle(res?.data?.title);
+    setChatMessages(res?.data?.messageList);
   };
 
   // useEffect 분리 한 이유는 소켓에서 메시지 받을때마다 geMessageList 함수 호출 하므로 분리했음.
@@ -102,6 +104,8 @@ const page = () => {
       const chatMessage: IChatMessage = {
         user: session?.user.id,
         message: messageInput,
+        profileImage: session?.user.image,
+        name: session?.user.name,
         createdAt,
       };
 
@@ -109,11 +113,7 @@ const page = () => {
       socket.emit("message", chatMessage);
 
       await axios.patch("/api/chats", {
-        messageList: {
-          user: session?.user.id,
-          message: chatMessage.message,
-          createdAt,
-        },
+        messageList: chatMessage,
         id,
       });
 
@@ -123,8 +123,6 @@ const page = () => {
     // 아무것도 입력안하면 input창 포커스
     (inputRef?.current as any).focus();
   };
-  console.log(chatMessages);
-  console.log(session);
   return (
     <Main>
       <TitleBox>{title}</TitleBox>
@@ -132,7 +130,7 @@ const page = () => {
         <ChatBox ref={scrollRef as any}>
           <ul>
             {chatMessages.map((chatMessage, i) =>
-              chatMessage.user._id === session?.user.id || chatMessage.user === session?.user.id ? (
+              chatMessage?.user?._id === session?.user.id || chatMessage.user === session?.user.id ? (
                 <Chatting flexdirection="row-reverse" key={"_msg" + i}>
                   <MessageBox>
                     <SendMessageSpan>{chatMessage.message}</SendMessageSpan>
@@ -143,9 +141,9 @@ const page = () => {
                 </Chatting>
               ) : (
                 <Chatting flexdirection="row" key={"_msg" + i}>
-                  <ProfileImg src={chatMessage.user.profileImage as any} />
+                  <ProfileImg src={chatMessage.profileImage as any} />
                   <MessageBox>
-                    <NameSpan>{`${chatMessage.user.name}`}</NameSpan>
+                    <NameSpan>{`${chatMessage.name}`}</NameSpan>
                     <MessageSpan>{chatMessage.message}</MessageSpan>
                     <TimeSpan textAlign="left" left="100%" right="">
                       {chatMessage.createdAt}
