@@ -120,10 +120,10 @@ export const ChatListContainer = () => {
   );
   */
 
-  const showBackdrop = modal && <Backdrop onClick={() => setModal(false)} />;
+  const showBackdrop = modal && <Backdrop />;
   console.log(chatList);
   const showModal = modal && (
-    <Modal>
+    <Modal onClick={() => setModal(false)}>
       <h1>채팅방 입장 하시겠습니까?</h1>
       <div>
         <button onClick={() => setModal(false)}>취소</button>
