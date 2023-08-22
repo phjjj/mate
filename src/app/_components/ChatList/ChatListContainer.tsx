@@ -23,7 +23,7 @@ import { BsArrowRightCircle, BsFillBookmarkFill } from "react-icons/bs";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import Modal, { Backdrop } from "../Modal/Modal";
+import Modal from "../Modal/Modal";
 import { useRouter } from "next/navigation";
 
 export const ChatListContainer = () => {
@@ -80,8 +80,6 @@ export const ChatListContainer = () => {
     router.push(`/chat-room/${chatListId}`);
   };
 
-  /* 채팅방 멤버 접근 권한 수정 할 예정*/
-
   const isChatRoomMember = () => {
     if (isHost()) {
       return true;
@@ -113,7 +111,6 @@ export const ChatListContainer = () => {
     }
   };
 
-  let showBackdrop;
   let showModal;
 
   if (modal) {
@@ -121,7 +118,6 @@ export const ChatListContainer = () => {
 
     if (typeof isRedirect === "boolean") {
       if (!isRedirect) {
-        showBackdrop = <Backdrop />;
         showModal = (
           <Modal onClick={() => setModal(false)}>
             <h1>채팅방 입장 하시겠습니까?</h1>
@@ -164,7 +160,6 @@ export const ChatListContainer = () => {
 
   return (
     <>
-      {showBackdrop}
       {showModal}
       <Box>
         <List>
