@@ -3,22 +3,23 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  z-index: 20;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.75);
   display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
 }
 
 .modal {
-  position: fixed;
-  min-width: 30%;
-  top: 20vh;
-  left: 23vw;
+  position: relative;
   background-color: white;
   padding: 1rem;
+  z-index: 30;
+  width: 300px;
+  margin: 0 auto;
   border-radius: 14px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  z-index: 30;
   animation: slide-down 300ms ease-out forwards;
 }
 
@@ -31,12 +32,6 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
-}
-
-@media (min-width: 768px) {
-  .modal {
-    left: 35vw;
-  }
 }
 
 @keyframes slide-down {
