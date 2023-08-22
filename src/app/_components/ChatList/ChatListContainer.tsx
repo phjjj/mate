@@ -32,7 +32,7 @@ export const ChatListContainer = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [chatList, setChatList] = useState([]);
   const [chatListId, setChatListId] = useState("");
-  const [currentUser, setCurrentUser] = useState({}) as any;
+  // const [currentUser, setCurrentUser] = useState({}) as any;
   // 선택한 채팅방
   const [selectChatRoom, setSelectChatRoom] = useState({}) as any;
 
@@ -90,6 +90,7 @@ export const ChatListContainer = () => {
       for (let chat of chatList as any) {
         if (chat.host._id === session?.user.id) {
           alert("채팅방 만들었으므로 참여 제한 됩니다");
+          setModal(false);
           return { isRedirect: false, code: 400 };
         }
       }
@@ -101,6 +102,12 @@ export const ChatListContainer = () => {
           isMemberCheck = true;
           return isMemberCheck;
         }
+      }
+      // 해당 채팅방 인원 가득 찼는지 확인
+      if (selectChatRoom.member.length + 1 === selectChatRoom.people) {
+        alert("해당 채팅방 인원이 가득 찼습니다");
+        setModal(false);
+        return { isRedirect: false, code: 400 };
       }
       return isMemberCheck;
     }
@@ -125,6 +132,7 @@ export const ChatListContainer = () => {
           </Modal>
         );
       } else {
+        setModal(false);
         router.push(`/chat-room/${chatListId}`);
       }
     }
@@ -147,7 +155,6 @@ export const ChatListContainer = () => {
 
   const linkClickHandler = async () => {
     const isCreatedChatRoom = await createdAtChatRoomHost();
-
     if (isCreatedChatRoom) {
       router.push(`/chat-create?id=${session?.user?.id}`);
     } else {
