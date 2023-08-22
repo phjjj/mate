@@ -8,6 +8,25 @@ export const Main = styled.div`
   width: 100%;
   max-width: 750px;
   margin: 0 auto;
+  // 나가기 버튼 css
+  a {
+    display: flex;
+    font-size: 15px;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    background: none;
+    margin-top: 9px;
+    gap: 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+
+    span {
+      margin-top: 3px;
+    }
+  }
 `;
 export const TitleBox = styled.h2`
   display: flex;
@@ -22,6 +41,25 @@ export const TitleBox = styled.h2`
   line-height: normal;
   letter-spacing: 0.667px;
   text-transform: uppercase;
+`;
+
+// 나가기 버튼
+export const ExitBtn = styled.button`
+  display: flex;
+  font-size: 15px;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  background: none;
+  margin-top: 9px;
+  gap: 10px;
+  border: none;
+  color: white;
+  cursor: pointer;
+
+  span {
+    margin-top: 3px;
+  }
 `;
 export const ContentsBox = styled.div`
   display: flex;
@@ -63,12 +101,12 @@ export const NameSpan = styled.span`
   font-size: 12px;
 `;
 
-export const TimeSpan = styled.span<{ left: string; right: string; textAlign: string }>`
+export const TimeSpan = styled.span<{ left: string; right: string; textalign: string }>`
   position: absolute;
   font-size: 10px;
   bottom: 0;
   right: ${(props) => props.right};
-  text-align: ${(props) => props.textAlign};
+  text-align: ${(props) => props.textalign};
   left: ${(props) => props.left};
   min-width: 83px;
   padding: 0 5px 0;
