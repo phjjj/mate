@@ -81,56 +81,46 @@ export const ChatListContainer = () => {
   };
 
   /* 채팅방 멤버 접근 권한 수정 할 예정*/
-  /*
+
   const isChatRoomMember = () => {
-    let isMemberCheck = false;
-    for (let member of selectChatRoom.member) {
-      if (member === session?.user.id) {
-        console.log("멤버 있음");
-        isMemberCheck = true;
-        return isMemberCheck;
-      }
-    }
-
-    if (!isMemberCheck) {
-      if (isHost()) {
-        return true;
-      }
-
-      return false;
-    }
-
     if (isHost()) {
       return true;
     } else {
-      return false;
+      let isMemberCheck = false;
+
+      for (let member of selectChatRoom.member) {
+        if (member === session?.user.id) {
+          console.log("멤버 있음");
+          isMemberCheck = true;
+          return isMemberCheck;
+        }
+      }
+
+      return isMemberCheck;
     }
   };
 
-   const showBackdrop = modal && !isChatRoomMember() && <Backdrop onClick={() => setModal(false)} />;
+  let showBackdrop;
+  let showModal;
 
-  const showModal = modal && !isChatRoomMember() && (
-    <Modal>
-      <h1>채팅방 입장 하시겠습니까?</h1>
-      <div>
-        <button onClick={() => setModal(false)}>취소</button>
-        <button onClick={redirectChatRoom}>입장</button>
-      </div>
-    </Modal>
-  );
-  */
+  if (modal) {
+    const isRedirect = isChatRoomMember();
 
-  const showBackdrop = modal && <Backdrop />;
-  console.log(chatList);
-  const showModal = modal && (
-    <Modal onClick={() => setModal(false)}>
-      <h1>채팅방 입장 하시겠습니까?</h1>
-      <div>
-        <button onClick={() => setModal(false)}>취소</button>
-        <button onClick={redirectChatRoom}>입장</button>
-      </div>
-    </Modal>
-  );
+    if (!isRedirect) {
+      showBackdrop = <Backdrop />;
+      showModal = (
+        <Modal onClick={() => setModal(false)}>
+          <h1>채팅방 입장 하시겠습니까?</h1>
+          <div>
+            <button onClick={() => setModal(false)}>취소</button>
+            <button onClick={redirectChatRoom}>입장</button>
+          </div>
+        </Modal>
+      );
+    } else {
+      router.push(`/chat-room/${chatListId}`);
+    }
+  }
 
   return (
     <>
