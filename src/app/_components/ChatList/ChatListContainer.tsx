@@ -90,6 +90,7 @@ export const ChatListContainer = () => {
       for (let chat of chatList as any) {
         if (chat.host._id === session?.user.id) {
           alert("채팅방 만들었으므로 참여 제한 됩니다");
+          setModal(false);
           return { isRedirect: false, code: 400 };
         }
       }
@@ -105,6 +106,7 @@ export const ChatListContainer = () => {
       // 해당 채팅방 인원 가득 찼는지 확인
       if (selectChatRoom.member.length + 1 === selectChatRoom.people) {
         alert("해당 채팅방 인원이 가득 찼습니다");
+        setModal(false);
         return { isRedirect: false, code: 400 };
       }
       return isMemberCheck;
