@@ -81,56 +81,79 @@ export const ChatListContainer = () => {
   };
 
   /* 채팅방 멤버 접근 권한 수정 할 예정*/
-  /*
+
   const isChatRoomMember = () => {
-    let isMemberCheck = false;
-    for (let member of selectChatRoom.member) {
-      if (member === session?.user.id) {
-        console.log("멤버 있음");
-        isMemberCheck = true;
-        return isMemberCheck;
-      }
-    }
-
-    if (!isMemberCheck) {
-      if (isHost()) {
-        return true;
-      }
-
-      return false;
-    }
-
     if (isHost()) {
       return true;
     } else {
-      return false;
+      // 유저가 채팅방 만들었으면 다른 채팅방 못들어간다. 반환값는 객체로 반환, 불리언 값으로 반환 하면 해당 채팅방 맴버 참여유무 값이다.
+      for (let chat of chatList as any) {
+        if (chat.host._id === session?.user.id) {
+          alert("채팅방 만들었으므로 참여 제한 됩니다");
+          return { isRedirect: false, code: 400 };
+        }
+      }
+      let isMemberCheck = false;
+
+      for (let member of selectChatRoom.member) {
+        if (member === session?.user.id) {
+          console.log("멤버 있음");
+          isMemberCheck = true;
+          return isMemberCheck;
+        }
+      }
+      return isMemberCheck;
     }
   };
 
-   const showBackdrop = modal && !isChatRoomMember() && <Backdrop onClick={() => setModal(false)} />;
+  let showBackdrop;
+  let showModal;
 
-  const showModal = modal && !isChatRoomMember() && (
-    <Modal>
-      <h1>채팅방 입장 하시겠습니까?</h1>
-      <div>
-        <button onClick={() => setModal(false)}>취소</button>
-        <button onClick={redirectChatRoom}>입장</button>
-      </div>
-    </Modal>
-  );
-  */
+  if (modal) {
+    const isRedirect = isChatRoomMember();
 
-  const showBackdrop = modal && <Backdrop />;
-  console.log(chatList);
-  const showModal = modal && (
-    <Modal onClick={() => setModal(false)}>
-      <h1>채팅방 입장 하시겠습니까?</h1>
-      <div>
-        <button onClick={() => setModal(false)}>취소</button>
-        <button onClick={redirectChatRoom}>입장</button>
-      </div>
-    </Modal>
-  );
+    if (typeof isRedirect === "boolean") {
+      if (!isRedirect) {
+        showBackdrop = <Backdrop />;
+        showModal = (
+          <Modal onClick={() => setModal(false)}>
+            <h1>채팅방 입장 하시겠습니까?</h1>
+            <div>
+              <button onClick={() => setModal(false)}>취소</button>
+              <button onClick={redirectChatRoom}>입장</button>
+            </div>
+          </Modal>
+        );
+      } else {
+        router.push(`/chat-room/${chatListId}`);
+      }
+    }
+  }
+
+  // 호스트가 이미 채팅방 참여했는지 확인 해주는 함수
+  const createdAtChatRoomHost = async () => {
+    try {
+      for (let chat of chatList as any) {
+        if (chat.host._id === session?.user.id) {
+          return false;
+        }
+      }
+
+      return true;
+    } catch (err) {
+      console.log("Request isChatRoom Host Error : ", err);
+    }
+  };
+
+  const linkClickHandler = async () => {
+    const isCreatedChatRoom = await createdAtChatRoomHost();
+
+    if (isCreatedChatRoom) {
+      router.push(`/chat-create?id=${session?.user?.id}`);
+    } else {
+      alert("이미 채팅방 만들었습니다.");
+    }
+  };
 
   return (
     <>
@@ -167,7 +190,7 @@ export const ChatListContainer = () => {
             );
           })}
         </List>
-        <Link href={`chat-create?id=${session?.user?.id}`}>
+        <Link href={""} onClick={linkClickHandler}>
           <AiOutlinePlusCircle className="button" />
         </Link>
       </Box>

@@ -6,6 +6,7 @@ import { ButtonContainer, ChatTitleInput, FormContainer, Header, CreateButton, I
 import Select from "react-select";
 import { BsArrowRightCircle } from "react-icons/bs";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 const Form = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -16,7 +17,8 @@ const Form = () => {
   const [destinationTime, setDestinationTime] = useState<string | undefined>("");
   const [people, setPeople] = useState<number | undefined>(0);
 
-  
+  const { data: session } = useSession();
+
   const params: any = useSearchParams();
   let id = "";
 
