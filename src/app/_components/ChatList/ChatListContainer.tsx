@@ -86,6 +86,13 @@ export const ChatListContainer = () => {
     if (isHost()) {
       return true;
     } else {
+      // 유저가 채팅방 만들었으면 다른 채팅방 못들어간다. 반환값는 객체로 반환, 불리언 값으로 반환 하면 해당 채팅방 맴버 참여유무 값이다.
+      for (let chat of chatList as any) {
+        if (chat.host._id === session?.user.id) {
+          alert("채팅방 만들었으므로 참여 제한 됩니다");
+          return { isRedirect: false, code: 400 };
+        }
+      }
       let isMemberCheck = false;
 
       for (let member of selectChatRoom.member) {
@@ -95,7 +102,6 @@ export const ChatListContainer = () => {
           return isMemberCheck;
         }
       }
-
       return isMemberCheck;
     }
   };
@@ -106,21 +112,48 @@ export const ChatListContainer = () => {
   if (modal) {
     const isRedirect = isChatRoomMember();
 
-    if (!isRedirect) {
-      showBackdrop = <Backdrop />;
-      showModal = (
-        <Modal onClick={() => setModal(false)}>
-          <h1>채팅방 입장 하시겠습니까?</h1>
-          <div>
-            <button onClick={() => setModal(false)}>취소</button>
-            <button onClick={redirectChatRoom}>입장</button>
-          </div>
-        </Modal>
-      );
-    } else {
-      router.push(`/chat-room/${chatListId}`);
+    if (typeof isRedirect === "boolean") {
+      if (!isRedirect) {
+        showBackdrop = <Backdrop />;
+        showModal = (
+          <Modal onClick={() => setModal(false)}>
+            <h1>채팅방 입장 하시겠습니까?</h1>
+            <div>
+              <button onClick={() => setModal(false)}>취소</button>
+              <button onClick={redirectChatRoom}>입장</button>
+            </div>
+          </Modal>
+        );
+      } else {
+        router.push(`/chat-room/${chatListId}`);
+      }
     }
   }
+
+  // 호스트가 이미 채팅방 참여했는지 확인 해주는 함수
+  const createdAtChatRoomHost = async () => {
+    try {
+      for (let chat of chatList as any) {
+        if (chat.host._id === session?.user.id) {
+          return false;
+        }
+      }
+
+      return true;
+    } catch (err) {
+      console.log("Request isChatRoom Host Error : ", err);
+    }
+  };
+
+  const linkClickHandler = async () => {
+    const isCreatedChatRoom = await createdAtChatRoomHost();
+
+    if (isCreatedChatRoom) {
+      router.push(`/chat-create?id=${session?.user?.id}`);
+    } else {
+      alert("이미 채팅방 만들었습니다.");
+    }
+  };
 
   return (
     <>
@@ -157,7 +190,7 @@ export const ChatListContainer = () => {
             );
           })}
         </List>
-        <Link href={`chat-create?id=${session?.user?.id}`}>
+        <Link href={""} onClick={linkClickHandler}>
           <AiOutlinePlusCircle className="button" />
         </Link>
       </Box>
