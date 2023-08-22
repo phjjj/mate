@@ -7,6 +7,7 @@ import {
   Button,
   Chatting,
   ContentsBox,
+  ExitBtn,
   Input,
   InputBox,
   Main,
@@ -23,6 +24,8 @@ import { useSession } from "next-auth/react";
 import axios from "axios";
 import { redirect, useParams } from "next/navigation";
 import { BsArrowRightCircle } from "react-icons/bs";
+import { IoExitOutline } from "react-icons/io5";
+import Link from "next/link";
 
 // 메세지 타입
 interface IChatMessage {
@@ -87,16 +90,6 @@ const page = () => {
     });
   }, []);
 
-  // 채팅 보낸 시간 구해주는 함수
-  const currentDate = () => {
-    const date = new Date();
-    const currentedAt = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}-${date
-      .toTimeString()
-      .slice(0, 8)}`;
-
-    return currentedAt;
-  };
-
   // 메시지 전송 시 함수
   const sendMessage = async () => {
     if (messageInput) {
@@ -123,8 +116,17 @@ const page = () => {
     // 아무것도 입력안하면 input창 포커스
     (inputRef?.current as any).focus();
   };
+
+  const onClickExit = async () => {
+    await axios.delete(`/api/chats/${id}`, { data: { userId: session?.user.id } });
+  };
+
   return (
     <Main>
+      <Link href="/chat-list" onClick={onClickExit}>
+        <IoExitOutline size={35} />
+        <span>나가기</span>
+      </Link>
       <TitleBox>{title}</TitleBox>
       <ContentsBox>
         <ChatBox ref={scrollRef as any}>
@@ -134,7 +136,7 @@ const page = () => {
                 <Chatting flexdirection="row-reverse" key={"_msg" + i}>
                   <MessageBox>
                     <SendMessageSpan>{chatMessage.message}</SendMessageSpan>
-                    <TimeSpan textAlign="right" right="100%" left="">
+                    <TimeSpan textalign="right" right="100%" left="">
                       {chatMessage.createdAt}
                     </TimeSpan>
                   </MessageBox>
@@ -145,7 +147,7 @@ const page = () => {
                   <MessageBox>
                     <NameSpan>{`${chatMessage.name}`}</NameSpan>
                     <MessageSpan>{chatMessage.message}</MessageSpan>
-                    <TimeSpan textAlign="left" left="100%" right="">
+                    <TimeSpan textalign="left" left="100%" right="">
                       {chatMessage.createdAt}
                     </TimeSpan>
                   </MessageBox>

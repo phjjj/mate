@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import connectMongoDB from "../../../_libs/mongodb";
 import Chat from "../../../_models/chat";
 import User from "../../../_models/user";
@@ -31,4 +31,15 @@ export async function PATCH(req, res) {
   }
 
   return NextResponse.json({ message: "이미 다른 채팅방에 참여하고 있습니다", status: 201, isChatRoom: true });
+}
+
+// 방 나갈때 member에서 빼기
+export async function DELETE(req, res) {
+  const { userId } = await req.json();
+  const { id } = res.params;
+
+  await connectMongoDB();
+  await Chat.findByIdAndUpdate(id, { $pull: { member: { $in: userId } } });
+
+  return NextResponse.json({ message: "방 나가기", status: 201 });
 }
