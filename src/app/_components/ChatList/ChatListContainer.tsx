@@ -134,16 +134,21 @@ export const ChatListContainer = () => {
     }
   }
 
-  // 호스트가 이미 채팅방 참여했는지 확인 해주는 함수
+  // 호스트가 이미 채팅방 참여했는지 확인 해주는 함수, 혹은 다른 채팅방에서 멤버로 참여하고 았는지 확인
   const createdAtChatRoomHost = async () => {
     try {
       for (let chat of chatList as any) {
         if (chat.host._id === session?.user.id) {
-          return false;
+          return { isCreated: false, message: "이미 채팅방 만들었습니다." };
         }
       }
 
-      return true;
+      for (let chat of chatList as any) {
+        if (chat.member.includes(session?.user.id)) {
+          return { isCreated: false, message: "다른 채팅방에 참여하고 있어 채팅방 생성 못합니다." };
+        }
+      }
+      return { isCreated: true };
     } catch (err) {
       console.log("Request isChatRoom Host Error : ", err);
     }
@@ -151,10 +156,10 @@ export const ChatListContainer = () => {
 
   const linkClickHandler = async () => {
     const isCreatedChatRoom = await createdAtChatRoomHost();
-    if (isCreatedChatRoom) {
+    if (isCreatedChatRoom?.isCreated) {
       router.push(`/chat-create?id=${session?.user?.id}`);
     } else {
-      alert("이미 채팅방 만들었습니다.");
+      alert(isCreatedChatRoom?.message);
     }
   };
 
