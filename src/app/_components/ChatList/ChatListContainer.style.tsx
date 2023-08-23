@@ -130,6 +130,8 @@ export const UserNameText = styled.span`
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  // 줄바꿈 사라지게하기
+  white-space: nowrap;
 `;
 export const UsersNumberSpan = styled.span`
   display: flex;
