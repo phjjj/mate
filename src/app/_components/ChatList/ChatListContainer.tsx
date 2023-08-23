@@ -201,11 +201,12 @@ export const ChatListContainer = () => {
                 </ChatInfoBox>
                 <ChatInfoBox2>
                   <UserInfoBox>
+                    {/* 호스트 유무에 따라 프로필정보, 유저 수 알맞게 수정 */}
                     <UserImg src={item.host ? item.host.profileImage : null} />
                     <UserNameText>{item.host ? item.host.name : "드라이버 없음"}</UserNameText>
                   </UserInfoBox>
                   <UsersNumberSpan>
-                    {item.member.length + 1}/{item.people}
+                    {item.host ? item.member.length + 1 : item.member.length}/{item.people}
                   </UsersNumberSpan>
                 </ChatInfoBox2>
               </Item>
