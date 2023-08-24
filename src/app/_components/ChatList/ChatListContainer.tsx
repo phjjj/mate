@@ -153,7 +153,7 @@ export const ChatListContainer = () => {
   const createdAtChatRoomHost = async () => {
     try {
       for (let chat of chatList as any) {
-        if (chat.host._id === session?.user.id) {
+        if (chat.host?._id === session?.user.id) {
           return { isCreated: false, message: "이미 채팅방 만들었습니다." };
         }
       }
