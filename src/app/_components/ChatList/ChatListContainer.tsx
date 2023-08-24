@@ -32,6 +32,8 @@ export const ChatListContainer = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [chatList, setChatList] = useState([]);
   const [chatListId, setChatListId] = useState("");
+  const [detect, setDetect] = useState(false);
+
   // const [currentUser, setCurrentUser] = useState({}) as any;
   // 선택한 채팅방
   const [selectChatRoom, setSelectChatRoom] = useState({}) as any;
@@ -43,10 +45,22 @@ export const ChatListContainer = () => {
     setChatList(res.data.chats);
   };
 
+  // 채팅방 호스트, 멤버 없는지 확인 해주는 함수
+  const isCheckChatRoomHostMember = async () => {
+    for (let chat of chatList as any) {
+      if (chat.member.length === 0 && !chat.host) {
+        await axios.delete(`/api/chats`, { data: { chatId: chat._id } });
+        setDetect(true);
+      }
+    }
+  };
+
   useEffect(() => {
     getChatList();
     setIsLoading(true);
-  }, []);
+  }, [isLoading, detect]);
+
+  isCheckChatRoomHostMember();
 
   // 채팅방 클릭 할때 실행하는 핸들러
   const clickChatList = (id: string, chatRoom: object) => {
@@ -153,7 +167,7 @@ export const ChatListContainer = () => {
   const createdAtChatRoomHost = async () => {
     try {
       for (let chat of chatList as any) {
-        if (chat.host._id === session?.user.id) {
+        if (chat.host?._id === session?.user.id) {
           return { isCreated: false, message: "이미 채팅방 만들었습니다." };
         }
       }
