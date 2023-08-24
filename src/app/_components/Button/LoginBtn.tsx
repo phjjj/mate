@@ -13,6 +13,10 @@ declare module "next-auth" {
       email: String;
       kakaoId: Number;
       image: String;
+      introduction: {
+        intro: String;
+        carImage: String;
+      };
     };
     expires: string;
   }

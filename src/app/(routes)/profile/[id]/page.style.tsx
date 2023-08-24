@@ -43,12 +43,50 @@ export const UserNameSpan = styled.span`
   line-height: normal;
   letter-spacing: -0.54px;
 `;
+// 자기소개 부분
+export const IntroductionBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 312px;
+  height: 200px;
+  gap: 15px;
+  font-size: 12px;
+  color: #8f8f8f;
+`;
+export const IntroBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+export const IntroParagraph = styled.p`
+  background-color: white;
+  color: #000;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: -0.27px;
+  border-radius: 10px;
+  height: 80px;
+  padding: 5px;
+`;
+export const CarInfoBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+export const CarImg = styled.img`
+  background-color: cadetblue;
+  height: 70px;
+  width: 70px;
+  border-radius: 11px;
+`;
+
 export const ButtonsBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 50px;
   a {
     text-decoration-line: none;
   }
@@ -58,4 +96,13 @@ export const HomeButton = styled(Button)`
 `;
 export const RedButton = styled(Button)`
   color: red;
+`;
+
+export const UserUpdateBtn = styled.button`
+  background-color: #c3c3c3;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  height: 25px;
+  border-radius: 10px;
 `;

@@ -21,6 +21,7 @@ const handler = NextAuth({
         // 커스텀 세션 user id
         session.user.id = sessionUser._id;
         session.user.kakaoId = sessionUser.kakaoId;
+        session.user.introduction = sessionUser.introduction;
       }
 
       return session;
