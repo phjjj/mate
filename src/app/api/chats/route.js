@@ -53,3 +53,13 @@ export async function PATCH(req, res) {
     { status: 201 }
   );
 }
+
+export async function DELETE(req, res) {
+  const { chatId } = await req.json();
+
+  await connectMongoDB();
+
+  const deletedChat = await Chat.findByIdAndDelete(chatId);
+
+  return NextResponse.json({ message: "ChatList DELETE" }, { status: 201 });
+}

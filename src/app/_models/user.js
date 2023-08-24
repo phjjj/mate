@@ -7,6 +7,12 @@ const userSchema = new Schema({
   email: { type: String },
   profileImage: { type: String },
   chatList: [{ type: Schema.Types.ObjectId, ref: "Chat" }],
+  introduction: {
+    intro: {
+      type: String,
+    },
+    carImage: { type: String },
+  },
 });
 
 // 회원 탈퇴 할시 해당 채팅 목록 지워준다.
