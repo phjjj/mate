@@ -40,6 +40,7 @@ const handler = NextAuth({
             eamil: profile["kakao_account"].email,
             name: profile.properties.nickname,
             profileImage: profile.properties["profile_image"],
+            introduction: { intro: "", carImage: "" },
           });
         }
         return true;
