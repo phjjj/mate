@@ -50,6 +50,8 @@ const page = () => {
   // 채팅 및 메시지 초기화 (chatMessages 안에 대화 내용들이 다 들어감)
   const [chatMessages, setChatMessages] = useState<IChatMessage[]>([]);
   const [messageInput, setMessageInput] = useState<string>("");
+  // 채팅방 호스트
+  const [hostId, setHostId] = useState();
   const [title, setTitle] = useState("");
   const { id } = useParams() as { id: string };
   const socket = io("https://jweather.site", {
@@ -66,6 +68,7 @@ const page = () => {
     const res = await axios.get(`/api/chats/${id}`);
     setTitle(res?.data?.title);
     setChatMessages(res?.data?.messageList);
+    setHostId(res.data.host);
   };
 
   // useEffect 분리 한 이유는 소켓에서 메시지 받을때마다 geMessageList 함수 호출 하므로 분리했음.

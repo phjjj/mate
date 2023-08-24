@@ -86,6 +86,21 @@ export const ChatListContainer = () => {
     } else {
       // 유저가 채팅방 만들었으면 다른 채팅방 못들어간다. 반환값는 객체로 반환, 불리언 값으로 반환 하면 해당 채팅방 맴버 참여유무 값이다.
       for (let chat of chatList as any) {
+        let isMemberCheck = false;
+        // 방에 호스트가 없을경우
+
+        if (chat.host === null) {
+          for (let member of selectChatRoom.member) {
+            if (member === session?.user.id) {
+              console.log("멤버 있음");
+              isMemberCheck = true;
+              return isMemberCheck;
+            }
+          }
+          alert("참가할 수 없는 방 입니다.");
+          setModal(false);
+          return { isRedirect: false, code: 400 };
+        }
         if (chat.host._id === session?.user.id) {
           alert("채팅방 만들었으므로 참여 제한 됩니다");
           setModal(false);
@@ -162,7 +177,7 @@ export const ChatListContainer = () => {
       alert(isCreatedChatRoom?.message);
     }
   };
-
+  console.log(chatList[0]);
   return (
     <>
       {showModal}
@@ -186,11 +201,12 @@ export const ChatListContainer = () => {
                 </ChatInfoBox>
                 <ChatInfoBox2>
                   <UserInfoBox>
-                    <UserImg src={item.host.profileImage} />
-                    <UserNameText>{item.host.name}</UserNameText>
+                    {/* 호스트 유무에 따라 프로필정보, 유저 수 알맞게 수정 */}
+                    <UserImg src={item.host ? item.host.profileImage : null} />
+                    <UserNameText>{item.host ? item.host.name : "드라이버 없음"}</UserNameText>
                   </UserInfoBox>
                   <UsersNumberSpan>
-                    {item.member.length + 1}/{item.people}
+                    {item.host ? item.member.length + 1 : item.member.length}/{item.people}
                   </UsersNumberSpan>
                 </ChatInfoBox2>
               </Item>
