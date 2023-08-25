@@ -147,15 +147,7 @@ export const ChatListContainer = () => {
 
     if (typeof isRedirect === "boolean") {
       if (!isRedirect) {
-        showModal = (
-          <Modal onClick={() => setModal(false)}>
-            <h1>채팅방 입장 하시겠습니까?</h1>
-            <div>
-              <button onClick={() => setModal(false)}>취소</button>
-              <button onClick={redirectChatRoom}>입장</button>
-            </div>
-          </Modal>
-        );
+        router.push(`/chat-info/${selectChatRoom._id}`);
       } else {
         setModal(false);
         router.push(`/chat-room/${chatListId}`);
