@@ -26,6 +26,9 @@ export const ProfileBox = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  &.chat__info__box {
+    margin-bottom: 1rem;
+  }
 `;
 export const UserImg = styled.img`
   background-color: grey;
