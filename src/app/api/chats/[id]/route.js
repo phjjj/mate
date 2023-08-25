@@ -9,9 +9,20 @@ export async function GET(req, res) {
 
   await connectMongoDB();
 
-  const chat = await Chat.findById(id);
+  const chat = await Chat.findById(id).populate("host");
   return NextResponse.json(
-    { message: "Read Chat", messageList: chat.messageList, title: chat.title, host: chat.host },
+    {
+      message: "Read Chat",
+      messageList: chat.messageList,
+      title: chat.title,
+      host: chat.host,
+      member: chat.member,
+      departures: chat.departures,
+      destination: chat.destination,
+      departuresTime: chat.departuresTime,
+      destinationTime: chat.destinationTime,
+      people: chat.people,
+    },
     { status: 201 }
   );
 }

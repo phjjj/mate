@@ -47,7 +47,7 @@ const handler = NextAuth({
         return true;
       } catch (err) {
         console.log(err);
-        주;
+
         return false;
       }
     },
