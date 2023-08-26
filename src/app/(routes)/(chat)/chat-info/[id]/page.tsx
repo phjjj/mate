@@ -19,15 +19,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import {
-  Box,
-  Item,
-  List,    
-} from "@/src/app/_components/ChatList/ChatListContainer.style";
+import { Box, Item, List } from "@/src/app/_components/ChatList/ChatListContainer.style";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import { CiClock2 } from "react-icons/ci";
+import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import {
   ChatInfoArea,
+  ChatInfoAreaContainer,
   ChatInfoAreaDepartureText,
   ChatInfoAreaDestinationText,
   ChatInfoHeader,
@@ -164,10 +162,13 @@ export default function ChatInfo() {
               도착
               {/* <DestinationText>{chatInfo.destination}</DestinationText>                 */}
             </ChatInfoTime>
+
             <ChatInfoArea>
               <ChatInfoAreaDepartureText>{chatInfo.departures}</ChatInfoAreaDepartureText>
+              <MdKeyboardDoubleArrowRight size={18} />
               <ChatInfoAreaDestinationText>{chatInfo.destination}</ChatInfoAreaDestinationText>
             </ChatInfoArea>
+
             <ChatInfoPeople>
               <ChatInfoPeopleText>
                 현재 인원{chatInfo.host ? chatInfo.member.length + 1 : chatInfo.member?.length}명

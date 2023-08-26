@@ -18,6 +18,7 @@ export const ChatInfoHeader = styled.div`
   align-items: center;
   & .mark {
     margin-left: 20px;
+    color: orange;
   }
 `;
 
@@ -41,14 +42,18 @@ export const ChatInfoTime = styled.span`
 
 export const ChatInfoArea = styled.div`
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   font-size: 0.9rem;
+  width: 90%;
   margin-left: 20px;
+  gap: 30px;
+  & svg {
+    width: 30px;
+  }
 `;
 
-export const ChatInfoAreaDepartureText = styled.span`
-  margin-bottom: 0.6rem;
-`;
+export const ChatInfoAreaDepartureText = styled.span``;
 
 export const ChatInfoAreaDestinationText = styled.span``;
 
