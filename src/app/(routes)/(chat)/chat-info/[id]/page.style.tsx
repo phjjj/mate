@@ -5,7 +5,7 @@ export const ChatInfoBox = styled.div`
   padding: 10px;
   display: flex;
   width: 337px;
-  height: 128px;
+  height: 95px;
   background-color: white;
   border-radius: 20px;
   flex-direction: column;
@@ -43,29 +43,31 @@ export const ChatInfoTime = styled.span`
 export const ChatInfoArea = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   font-size: 0.9rem;
   width: 90%;
   margin-left: 20px;
   gap: 30px;
   & svg {
-    width: 30px;
+    width: 60px;
   }
 `;
 
-export const ChatInfoAreaDepartureText = styled.span``;
+export const ChatInfoAreaDepartureText = styled.span`
+  width: 100px;
+`;
 
-export const ChatInfoAreaDestinationText = styled.span``;
+export const ChatInfoAreaDestinationText = styled.span`
+  width: 100px;
+`;
 
 export const ChatInfoPeople = styled.div`
   display: flex;
-  flex-direction: column;
   margin-left: 20px;
   font-size: 0.8rem;
 `;
 
 export const ChatInfoPeopleText = styled.span`
-  &:first-child {
-    margin-bottom: 0.6rem;
-  }
+  color: gray;
+  font-size: 0.5rem;
 `;

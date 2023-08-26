@@ -25,7 +25,6 @@ import { CiClock2 } from "react-icons/ci";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import {
   ChatInfoArea,
-  ChatInfoAreaContainer,
   ChatInfoAreaDepartureText,
   ChatInfoAreaDestinationText,
   ChatInfoHeader,
@@ -168,10 +167,9 @@ export default function ChatInfo() {
               <MdKeyboardDoubleArrowRight size={18} />
               <ChatInfoAreaDestinationText>{chatInfo.destination}</ChatInfoAreaDestinationText>
             </ChatInfoArea>
-
             <ChatInfoPeople>
               <ChatInfoPeopleText>
-                현재 인원{chatInfo.host ? chatInfo.member.length + 1 : chatInfo.member?.length}명
+                현재 인원{chatInfo.host ? chatInfo.member.length + 1 : chatInfo.member?.length}명&nbsp;|&nbsp;
               </ChatInfoPeopleText>
               <ChatInfoPeopleText>총 인원 {chatInfo.people}명</ChatInfoPeopleText>
             </ChatInfoPeople>
