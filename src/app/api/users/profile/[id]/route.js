@@ -27,3 +27,24 @@ export async function DELETE(req, { params }) {
     console.log(err);
   }
 }
+
+export async function PUT(req, { params }) {
+  try {
+    const { id } = params;
+    await connectMongoDB();
+    const {
+      data: { carImage, intro },
+    } = await req.json();
+
+    await User.findByIdAndUpdate(id, {
+      introduction: {
+        carImage,
+        intro,
+      },
+    });
+
+    return NextResponse.json({ message: "Update Profile" }, { status: 201 });
+  } catch (err) {
+    console.log(err);
+  }
+}
