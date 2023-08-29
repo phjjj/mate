@@ -25,7 +25,7 @@ export const ChatInfoHeader = styled.div`
 export const ChatInfoHeaderTitle = styled.span`
   color: orange;
   display: flex;
-  margin-left: 40px;
+  margin-left: 20px;
   font-size: 0.8rem;
 `;
 
@@ -44,7 +44,7 @@ export const ChatInfoArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   width: 90%;
   margin-left: 20px;
   gap: 30px;

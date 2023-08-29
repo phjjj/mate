@@ -152,7 +152,6 @@ export default function ChatInfo() {
         <List>
           <Item className="non-center">
             <ChatInfoHeader>
-              <BsFillBookmarkFill className="mark" />
               <ChatInfoHeaderTitle>{chatInfo.title}</ChatInfoHeaderTitle>
             </ChatInfoHeader>
             <ChatInfoTime>
@@ -164,7 +163,7 @@ export default function ChatInfo() {
 
             <ChatInfoArea>
               <ChatInfoAreaDepartureText>{chatInfo.departures}</ChatInfoAreaDepartureText>
-              <MdKeyboardDoubleArrowRight size={18} />
+              <MdKeyboardDoubleArrowRight size={23} />
               <ChatInfoAreaDestinationText>{chatInfo.destination}</ChatInfoAreaDestinationText>
             </ChatInfoArea>
             <ChatInfoPeople>
