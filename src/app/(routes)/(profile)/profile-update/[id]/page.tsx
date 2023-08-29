@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import imageCompression from "browser-image-compression";
+
 import {
   HomeButton,
   RedButton,
@@ -38,7 +40,7 @@ export default function Profile() {
   const { id } = useParams() as { id: string };
   const carImageInput = useRef() as any;
   const router = useRouter();
-  console.log(id);
+
   // const axiosGetReqUser = async () => {
   //   const {
   //     data: { user },
@@ -63,31 +65,41 @@ export default function Profile() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await axios.put(`/api/users/profile/${id}`, { data: { carImage, intro } });
+    router.push(`/profile/${id}`);
   };
 
-  // 업로드시 미리보기
-  const onUpload = (e: any) => {
+  const onUpload = async (e: any) => {
     // 파일 선택 안 할 경우 에러 떠서 추가
     if (e.target.files.length === 0) return;
 
     const file = e.target.files[0];
     const fileSize = file.size;
     const maxSize = 3 * 1024 * 1024;
+
     if (fileSize > maxSize) {
       alert("사진은 3MB 이내로 업로드가 가능합니다.");
-      e.target.value("");
+      e.target.value = "";
       return;
     }
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
+    // 이미지 용량 압축
+    try {
+      const compressedFile = await imageCompression(file, {
+        maxSizeMB: 3, // 최대 파일 크기
+        useWebWorker: true, // 웹 워커 사용 여부
+        initialQuality: 0.5, // 이미지 퀄리티 줄이기
+      });
 
-    return new Promise<void>((resolve) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(compressedFile);
+
       reader.onload = () => {
         setCarImage(reader.result || null); // 파일의 컨텐츠
-        resolve();
       };
-    });
+    } catch (error) {
+      console.error("Error compressing the image:", error);
+    }
   };
+
   // 이미지 클릭시 input 클릭
   const onClickCarImg = () => {
     carImageInput.current.click();
