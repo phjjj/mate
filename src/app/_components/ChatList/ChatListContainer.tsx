@@ -14,12 +14,13 @@ import {
   Item,
   ItemTitleBox,
   List,
+  NonHostImg,
   UserImg,
   UserInfoBox,
   UserNameText,
   UsersNumberSpan,
 } from "./ChatListContainer.style";
-import { BsArrowRightCircle, BsFillBookmarkFill } from "react-icons/bs";
+import { BsArrowRightCircle, BsFillBookmarkFill, BsPersonFillX } from "react-icons/bs";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
@@ -192,7 +193,7 @@ export const ChatListContainer = () => {
           {chatList.map((item: any, idx) => {
             return (
               <Item key={idx} onClick={() => clickChatList(item._id, item)}>
-                <BsFillBookmarkFill className="mark" />
+                <BsFillBookmarkFill className={item.host ? "mark active" : "mark non-active"} />
                 <ItemTitleBox>{item.title}</ItemTitleBox>
                 <ChatInfoBox>
                   <DeparturesInfoBox>
@@ -208,7 +209,13 @@ export const ChatListContainer = () => {
                 <ChatInfoBox2>
                   <UserInfoBox>
                     {/* 호스트 유무에 따라 프로필정보, 유저 수 알맞게 수정 */}
-                    <UserImg src={item.host ? item.host.profileImage : null} />
+                    {!item.host ? (
+                      <NonHostImg>
+                        <BsPersonFillX size={17} />
+                      </NonHostImg>
+                    ) : (
+                      <UserImg src={item.host.profileImage} />
+                    )}
                     <UserNameText>{item.host ? item.host.name : "드라이버 없음"}</UserNameText>
                   </UserInfoBox>
                   <UsersNumberSpan>
