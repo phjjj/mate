@@ -14,7 +14,7 @@ import {
   IntroParagraph,
   CarImg,
   CarInfoBox,
-} from "../../../profile/[id]/page.style";
+} from "../../../(profile)/profile/[id]/page.style";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
