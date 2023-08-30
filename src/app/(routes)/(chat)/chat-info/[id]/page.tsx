@@ -19,24 +19,20 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { Box, Item, List } from "@/src/app/_components/ChatList/ChatListContainer.style";
+import { BsFillBookmarkFill } from "react-icons/bs";
+import { CiClock2 } from "react-icons/ci";
+import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import {
-  Box,
-  ChatInfoBox,
-  ChatInfoBox2,
-  DeparturesInfoBox,
-  DeparturesText,
-  DeparturesTimeSpan,
-  DestinationInfoBox,
-  DestinationText,
-  DestinationTimeSpan,
-  Item,
-  ItemTitleBox,
-  List,
-  UserInfoBox,
-  UserNameText,
-  UsersNumberSpan,
-} from "@/src/app/_components/ChatList/ChatListContainer.style";
-import { BsArrowRightCircle, BsFillBookFill, BsFillBookmarkFill } from "react-icons/bs";
+  ChatInfoArea,
+  ChatInfoAreaDepartureText,
+  ChatInfoAreaDestinationText,
+  ChatInfoHeader,
+  ChatInfoHeaderTitle,
+  ChatInfoPeople,
+  ChatInfoPeopleText,
+  ChatInfoTime,
+} from "./page.style";
 
 interface IParams {
   id: String;
@@ -138,7 +134,7 @@ export default function ChatInfo() {
   return isLoading ? null : (
     <Main>
       <Title>드라이버 정보</Title>
-      <ProfileBox>
+      <ProfileBox className="chat__info__box">
         <UserImg src={chatInfo.host?.profileImage} />
         <UserNameSpan>{chatInfo.host?.name}</UserNameSpan>
         <IntroductionBox>
@@ -152,28 +148,30 @@ export default function ChatInfo() {
           </CarInfoBox>
         </IntroductionBox>
       </ProfileBox>
-      <Box>
+      <Box className="chat__info__box">
         <List>
-          <Item>
-            <BsFillBookmarkFill className="mark" />
-            <ItemTitleBox>{chatInfo.title}</ItemTitleBox>
-            <ChatInfoBox>
-              <DeparturesInfoBox>
-                <DeparturesText>{chatInfo.departures}</DeparturesText>
-                <DeparturesTimeSpan>{chatInfo.departuresTime}</DeparturesTimeSpan>
-              </DeparturesInfoBox>
-              <BsArrowRightCircle />
-              <DestinationInfoBox>
-                <DestinationText>{chatInfo.destination}</DestinationText>
-                <DestinationTimeSpan>{chatInfo.destinationTime}</DestinationTimeSpan>
-              </DestinationInfoBox>
-            </ChatInfoBox>
-            <ChatInfoBox2>
-              <UserInfoBox>{/* 호스트 유무에 따라 프로필정보, 유저 수 알맞게 수정 */}</UserInfoBox>
-              <UsersNumberSpan>
-                {chatInfo.host ? chatInfo.member.length + 1 : chatInfo.member?.length}/{chatInfo.people}
-              </UsersNumberSpan>
-            </ChatInfoBox2>
+          <Item className="non-center">
+            <ChatInfoHeader>
+              <ChatInfoHeaderTitle>{chatInfo.title}</ChatInfoHeaderTitle>
+            </ChatInfoHeader>
+            <ChatInfoTime>
+              {/* <DeparturesText>{chatInfo.departures}</DeparturesText> */}
+              <CiClock2 size={15} className="clock__icon" /> {chatInfo.departuresTime} 출발 | {chatInfo.destinationTime}{" "}
+              도착
+              {/* <DestinationText>{chatInfo.destination}</DestinationText>                 */}
+            </ChatInfoTime>
+
+            <ChatInfoArea>
+              <ChatInfoAreaDepartureText>{chatInfo.departures}</ChatInfoAreaDepartureText>
+              <MdKeyboardDoubleArrowRight size={23} />
+              <ChatInfoAreaDestinationText>{chatInfo.destination}</ChatInfoAreaDestinationText>
+            </ChatInfoArea>
+            <ChatInfoPeople>
+              <ChatInfoPeopleText>
+                현재 인원{chatInfo.host ? chatInfo.member.length + 1 : chatInfo.member?.length}명&nbsp;|&nbsp;
+              </ChatInfoPeopleText>
+              <ChatInfoPeopleText>총 인원 {chatInfo.people}명</ChatInfoPeopleText>
+            </ChatInfoPeople>
           </Item>
         </List>
       </Box>

@@ -31,7 +31,9 @@ export default function Profile() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   //const [user, setUser] = useState<any>({});
   const { id } = useParams() as { id: string };
+
   console.log(id);
+
   // const axiosGetReqUser = async () => {
   //   const {
   //     data: { user },
@@ -58,6 +60,7 @@ export default function Profile() {
         <Link href={`/profile-update/${id}`}>
           <UserUpdateBtn>프로필 수정</UserUpdateBtn>
         </Link>
+
         <IntroductionBox>
           <IntroBox>
             <span>소개</span>
