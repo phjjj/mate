@@ -7,8 +7,8 @@ export const Backdrop = (props: any) => {
 
 export const ModalOverlay = (props: any) => {
   return (
-    <div className={classes.modal}>
-      <div className={classes.content}>{props.children}</div>
+    <div className={classes.modalWrapper}>
+      <div className={classes.modal}>{props.children}</div>
     </div>
   );
 };

@@ -33,6 +33,8 @@ import {
   ChatInfoPeopleText,
   ChatInfoTime,
 } from "./page.style";
+import Modal from "@/src/app/_components/Modal/Modal";
+import classes from "@/src/app/_components/Modal/Modal.module.css";
 
 interface IParams {
   id: String;
@@ -42,6 +44,7 @@ export default function ChatInfo() {
   const { data: session } = useSession();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [chatInfo, setChatInfo] = useState({}) as any;
+  const [modal, setModal] = useState(false);
 
   const router = useRouter();
   const { id: chatId } = useParams();
@@ -126,60 +129,77 @@ export default function ChatInfo() {
       }
     }
   };
+
+  // 자동차 이미지 모달 보여주기
+  const showCarImageModal = () => {
+    setModal((prev) => !prev);
+  };
+
+  const overload = modal ? (
+    <Modal onClick={showCarImageModal}>
+      <div className={classes.car__bg}>
+        <img src={`${chatInfo?.host?.introduction?.carImage}`} />
+      </div>
+    </Modal>
+  ) : null;
+
   useEffect(() => {
     getChatInfo();
     setIsLoading(false);
   }, []);
 
   return isLoading ? null : (
-    <Main>
-      <Title>드라이버 정보</Title>
-      <ProfileBox className="chat__info__box">
-        <UserImg src={chatInfo.host?.profileImage} />
-        <UserNameSpan>{chatInfo.host?.name}</UserNameSpan>
-        <IntroductionBox>
-          <IntroBox>
-            <span>소개</span>
-            <IntroParagraph>{chatInfo?.host?.introduction?.intro}</IntroParagraph>
-          </IntroBox>
-          <CarInfoBox>
-            <span>자동차</span>
-            <CarImg src={`${chatInfo?.host?.introduction?.carImage}`} />
-          </CarInfoBox>
-        </IntroductionBox>
-      </ProfileBox>
-      <Box className="chat__info__box">
-        <List>
-          <Item className="non-center">
-            <ChatInfoHeader>
-              <ChatInfoHeaderTitle>{chatInfo.title}</ChatInfoHeaderTitle>
-            </ChatInfoHeader>
-            <ChatInfoTime>
-              {/* <DeparturesText>{chatInfo.departures}</DeparturesText> */}
-              <CiClock2 size={15} className="clock__icon" /> {chatInfo.departuresTime} 출발 | {chatInfo.destinationTime}{" "}
-              도착
-              {/* <DestinationText>{chatInfo.destination}</DestinationText>                 */}
-            </ChatInfoTime>
+    <>
+      {overload}
+      <Main>
+        <Title>드라이버 정보</Title>
+        <ProfileBox className="chat__info__box">
+          <UserImg src={chatInfo.host?.profileImage} />
+          <UserNameSpan>{chatInfo.host?.name}</UserNameSpan>
+          <IntroductionBox>
+            <IntroBox>
+              <span>소개</span>
+              <IntroParagraph>{chatInfo?.host?.introduction?.intro}</IntroParagraph>
+            </IntroBox>
+            <CarInfoBox onClick={showCarImageModal}>
+              <span>자동차</span>
+              <CarImg src={`${chatInfo?.host?.introduction?.carImage}`} />
+            </CarInfoBox>
+          </IntroductionBox>
+        </ProfileBox>
+        <Box className="chat__info__box">
+          <List>
+            <Item className="non-center">
+              <ChatInfoHeader>
+                <ChatInfoHeaderTitle>{chatInfo.title}</ChatInfoHeaderTitle>
+              </ChatInfoHeader>
+              <ChatInfoTime>
+                {/* <DeparturesText>{chatInfo.departures}</DeparturesText> */}
+                <CiClock2 size={15} className="clock__icon" /> {chatInfo.departuresTime} 출발 |{" "}
+                {chatInfo.destinationTime} 도착
+                {/* <DestinationText>{chatInfo.destination}</DestinationText>                 */}
+              </ChatInfoTime>
 
-            <ChatInfoArea>
-              <ChatInfoAreaDepartureText>{chatInfo.departures}</ChatInfoAreaDepartureText>
-              <MdKeyboardDoubleArrowRight size={23} />
-              <ChatInfoAreaDestinationText>{chatInfo.destination}</ChatInfoAreaDestinationText>
-            </ChatInfoArea>
-            <ChatInfoPeople>
-              <ChatInfoPeopleText>
-                현재 인원{chatInfo.host ? chatInfo.member.length + 1 : chatInfo.member?.length}명&nbsp;|&nbsp;
-              </ChatInfoPeopleText>
-              <ChatInfoPeopleText>총 인원 {chatInfo.people}명</ChatInfoPeopleText>
-            </ChatInfoPeople>
-          </Item>
-        </List>
-      </Box>
-      <ButtonsBox>
-        <Link href={""} onClick={redirectChatRoom}>
-          <HomeButton>채팅방 입장</HomeButton>
-        </Link>
-      </ButtonsBox>
-    </Main>
+              <ChatInfoArea>
+                <ChatInfoAreaDepartureText>{chatInfo.departures}</ChatInfoAreaDepartureText>
+                <MdKeyboardDoubleArrowRight size={23} />
+                <ChatInfoAreaDestinationText>{chatInfo.destination}</ChatInfoAreaDestinationText>
+              </ChatInfoArea>
+              <ChatInfoPeople>
+                <ChatInfoPeopleText>
+                  현재 인원{chatInfo.host ? chatInfo.member.length + 1 : chatInfo.member?.length}명&nbsp;|&nbsp;
+                </ChatInfoPeopleText>
+                <ChatInfoPeopleText>총 인원 {chatInfo.people}명</ChatInfoPeopleText>
+              </ChatInfoPeople>
+            </Item>
+          </List>
+        </Box>
+        <ButtonsBox>
+          <Link href={""} onClick={redirectChatRoom}>
+            <HomeButton>채팅방 입장</HomeButton>
+          </Link>
+        </ButtonsBox>
+      </Main>
+    </>
   );
 }

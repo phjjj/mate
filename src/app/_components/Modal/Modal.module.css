@@ -11,21 +11,41 @@
   z-index: 20;
 }
 
+.modalWrapper {
+  /* 화면에 꽉 차게 하는 코드(여기서는 너비를 꽉 채우는 용도) */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+  /* 위아래 너비를 준 상태에서 가로 50%, 세로 50%를 이동시킬 수 있다 (= 한가운데 배치) */
+  transform: translate(-50%, -50%);
+
+  /* 위의 overlay 배경보다 한 단계 더 높게 배치 */
+  z-index: 30;
+}
+
 .modal {
   position: relative;
-  background-color: white;
-  padding: 1rem;
-  z-index: 30;
-  width: 300px;
-  margin: 0 auto;
+  display: flex;
   border-radius: 14px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   animation: slide-down 300ms ease-out forwards;
+  width: 260px;
+  height: auto;
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); */
 }
 
 .modal h1 {
   text-align: center;
   margin-bottom: 1rem;
+}
+
+.modal .car__bg {
+  background-color: wheat;
+}
+
+.modal .car__bg img {
+  width: 100%;
+  height: auto;
 }
 
 .modal div div {
