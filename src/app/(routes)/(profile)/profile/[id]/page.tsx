@@ -29,28 +29,25 @@ interface IParams {
 export default function Profile() {
   const { data: session } = useSession();
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  //const [user, setUser] = useState<any>({});
+  const [user, setUser] = useState<any>({});
   const { id } = useParams() as { id: string };
-
-  console.log(id);
-
-  // const axiosGetReqUser = async () => {
-  //   const {
-  //     data: { user },
-  //   } = await axios.get(`/api/users/profile/${id}`);
-  //   setUser(user);
-  // };
-
   // 회원탈퇴 이벤트 핸들러
   const onWithdrawal = async () => {
     await axios.delete(`/api/users/profile/${id}`);
     await signOut({ callbackUrl: "/" });
   };
-
+  const axiosGetReqUser = async () => {
+    const {
+      data: { user },
+    } = await axios.get(`/api/users/profile/${id}`);
+    setUser(user);
+  };
+  console.log(user);
   useEffect(() => {
-    // axiosGetReqUser();
+    axiosGetReqUser();
     setIsLoading(false);
   }, []);
+
   return isLoading ? null : (
     <Main>
       <Title>프로필</Title>
@@ -64,11 +61,11 @@ export default function Profile() {
         <IntroductionBox>
           <IntroBox>
             <span>소개</span>
-            <IntroParagraph>{session?.user.introduction?.intro}</IntroParagraph>
+            <IntroParagraph>{user.introduction?.intro}</IntroParagraph>
           </IntroBox>
           <CarInfoBox>
             <span>자동차</span>
-            <CarImg src={`${session?.user.introduction?.carImage}`} />
+            <CarImg src={`${user.introduction?.carImage}`} />
           </CarInfoBox>
         </IntroductionBox>
       </ProfileBox>

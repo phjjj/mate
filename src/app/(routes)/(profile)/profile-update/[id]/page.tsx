@@ -36,29 +36,25 @@ export default function Profile() {
   const [carImage, setCarImage]: any = useState(null);
   // 소개글
   const [intro, setIntro]: any = useState();
-  //const [user, setUser] = useState<any>({});
+  const [user, setUser] = useState<any>({});
   const { id } = useParams() as { id: string };
   const carImageInput = useRef() as any;
   const router = useRouter();
 
-  // const axiosGetReqUser = async () => {
-  //   const {
-  //     data: { user },
-  //   } = await axios.get(`/api/users/profile/${id}`);
-  //   setUser(user);
-  // };
-
-  // 회원탈퇴 이벤트 핸들러
-  const onWithdrawal = async () => {
-    await axios.delete(`/api/users/profile/${id}`);
-    await signOut({ callbackUrl: "/" });
+  const axiosGetReqUser = async () => {
+    const {
+      data: { user },
+    } = await axios.get(`/api/users/profile/${id}`);
+    setUser(user);
+    setIntro(user.introduction.intro);
+    setCarImage(user.introduction.carImage);
   };
 
   useEffect(() => {
-    // axiosGetReqUser();
+    axiosGetReqUser();
     setIsLoading(false);
     // 이미지 가져오기
-    setCarImage(session?.user.introduction.carImage);
+    // setCarImage(user.introduction.carImage as any);
   }, []);
 
   // 업데이트
@@ -105,7 +101,7 @@ export default function Profile() {
     carImageInput.current.click();
   };
 
-  return isLoading ? null : (
+  return (
     <Main>
       <Title>프로필</Title>
       <form onSubmit={handleSubmit}>
@@ -119,7 +115,8 @@ export default function Profile() {
                 onChange={(e) => {
                   setIntro(e.target.value);
                 }}
-                placeholder={session?.user?.introduction.intro as string}
+                defaultValue={intro}
+                type="text"
               />
             </IntroBox>
             <CarInfoBox>
