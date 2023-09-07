@@ -48,7 +48,7 @@ export default function Profile() {
     setIsLoading(false);
   }, []);
 
-  return isLoading ? null : (
+  return (
     <Main>
       <Title>프로필</Title>
       <ProfileBox>

@@ -184,7 +184,7 @@ export const ChatListContainer = () => {
       alert(isCreatedChatRoom?.message);
     }
   };
-  console.log(chatList[0]);
+  console.log(session);
   return (
     <>
       {showModal}
