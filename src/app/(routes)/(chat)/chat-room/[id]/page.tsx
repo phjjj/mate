@@ -54,7 +54,8 @@ const page = () => {
   const [hostId, setHostId] = useState();
   const [title, setTitle] = useState("");
   const { id } = useParams() as { id: string };
-  const socket = io("https://jweather.site", {
+
+  const socket = io(`${process.env.API_URL}`, {
     auth: { id },
   });
 
