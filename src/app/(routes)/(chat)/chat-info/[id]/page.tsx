@@ -85,7 +85,7 @@ export default function ChatInfo() {
       if (chatInfo.host === null) {
         for (let member of chatInfo.member) {
           if (member === session?.user.id) {
-            console.log("멤버 있음");
+            //console.log("멤버 있음");
             isMemberCheck = true;
             return isMemberCheck;
           }

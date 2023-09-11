@@ -51,7 +51,7 @@ export async function DELETE(req, res) {
   // 유저아이디
   const { userId } = await req.json();
   // 방 아이디
-  console.log(userId);
+
   const { id } = res.params;
 
   await connectMongoDB();
