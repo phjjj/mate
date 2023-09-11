@@ -9,11 +9,12 @@ export const Main = styled.main`
   align-items: center;
   gap: 500px;
   height: 100%;
+  background-color: #74b9ff;
 `;
 
 export const Title = styled.main`
   display: flex;
-  color: #fff;
+  color: white;
   font-size: 58px;
   font-weight: 400;
   padding-top: 100px;
