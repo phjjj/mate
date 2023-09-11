@@ -1,14 +1,22 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 export const Wraaper = styled.nav`
   display: flex;
+  position: relative;
+  width: 100%;
+  background-color: #74b9ff;
+  height: 56px;
+  margin-bottom: auto;
+`;
+
+export const BtnBox = styled.div`
+  display: flex;
   position: absolute;
-  justify-content: space-between;
-  right: 0;
-  left: 0;
-  padding: 50px;
-  svg {
-    color: #0084ff;
-    display: flex;
+  top: 10px;
+  right: 20px;
+  font-size: 0;
+  gap: 20px;
+  a {
+    color: white;
   }
 `;

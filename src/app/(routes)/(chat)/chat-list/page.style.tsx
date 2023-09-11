@@ -2,16 +2,19 @@
 
 import { styled } from "styled-components";
 
-export const Main = styled.main`
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  align-items: center;
-  gap: 40px;
+export const Main = styled.div`
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: absolute;
+  top: 56px; // 56px 하는 이유가 내비바랑 선이 안맞아서
+  left: 0;
+  right: 0;
+  bottom: 0;
 `;
 export const TitleBox = styled.h2`
   display: flex;
-  margin-top: 50px;
+  justify-content: center;
+  padding: 20px;
   color: #000;
   text-align: center;
   font-family: Archivo Black;
@@ -21,19 +24,4 @@ export const TitleBox = styled.h2`
   line-height: normal;
   letter-spacing: 0.667px;
   text-transform: uppercase;
-`;
-export const Box = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  a {
-    display: flex;
-    margin: 0 auto;
-    margin-top: 50px;
-
-    .button {
-      color: white;
-      font-size: 50px;
-    }
-  }
 `;

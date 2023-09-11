@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { Button } from "./LoginBtn.stye";
+import { Button } from "./LoginBtn.style";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -13,6 +13,10 @@ declare module "next-auth" {
       email: String;
       kakaoId: Number;
       image: String;
+      introduction: {
+        intro: String;
+        carImage: String;
+      };
     };
     expires: string;
   }

@@ -3,15 +3,24 @@ import { styled } from "styled-components";
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
-
+  align-items: center;
+  &.chat__info__box {
+    margin-top: 30px;
+    & li {
+      width: 300px;
+      padding-bottom: 20px;
+    }
+  }
   a {
     display: flex;
     margin: 0 auto;
     margin-top: 50px;
 
     .button {
-      color: white;
+      color: #74b9ff;
       font-size: 50px;
+      padding-top: 20px;
+      padding-bottom: 10px;
     }
   }
 `;
@@ -20,7 +29,6 @@ export const List = styled.ul`
   flex-direction: column;
   gap: 10px;
   overflow: auto;
-  height: 600px;
 `;
 export const Item = styled.li`
   position: relative;
@@ -34,13 +42,26 @@ export const Item = styled.li`
   align-items: center;
   gap: 10px;
 
+  &.non-assess {
+    cursor: not-allowed;
+  }
+
+  &.non-center {
+    align-items: flex-start;
+  }
+
   .mark {
-    color: #315eff;
     position: absolute;
     font-size: 25px;
     left: 0;
     top: 0;
     margin-left: 20px;
+  }
+  .active {
+    color: #315eff;
+  }
+  .non-active {
+    color: gray;
   }
 `;
 
@@ -116,6 +137,20 @@ export const UserInfoBox = styled.div`
   align-items: center;
   gap: 5px;
 `;
+
+export const NonHostImg = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: gray;
+  border-radius: 20px;
+  & svg {
+    color: #ffffff;
+  }
+`;
+
 export const UserImg = styled.img`
   background-color: grey;
   width: 30px;
@@ -131,6 +166,8 @@ export const UserNameText = styled.span`
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  // 줄바꿈 사라지게하기
+  white-space: nowrap;
 `;
 export const UsersNumberSpan = styled.span`
   display: flex;

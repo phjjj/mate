@@ -1,7 +1,8 @@
 import NextAuth from "next-auth";
 import KakaoProvider from "next-auth/providers/kakao";
-import connectToDB from "@/app/_libs/mongodb";
-import User from "@/app/_models/user";
+
+import connectToDB from "/src/app/_libs/mongodb";
+import User from "/src/app/_models/user";
 
 const handler = NextAuth({
   providers: [
@@ -20,6 +21,7 @@ const handler = NextAuth({
         // 커스텀 세션 user id
         session.user.id = sessionUser._id;
         session.user.kakaoId = sessionUser.kakaoId;
+        session.user.introduction = sessionUser.introduction;
       }
 
       return session;
@@ -39,11 +41,13 @@ const handler = NextAuth({
             eamil: profile["kakao_account"].email,
             name: profile.properties.nickname,
             profileImage: profile.properties["profile_image"],
+            introduction: { intro: "", carImage: "" },
           });
         }
         return true;
       } catch (err) {
         console.log(err);
+
         return false;
       }
     },

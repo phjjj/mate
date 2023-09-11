@@ -6,6 +6,7 @@ import { ButtonContainer, ChatTitleInput, FormContainer, Header, CreateButton, I
 import Select from "react-select";
 import { BsArrowRightCircle } from "react-icons/bs";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 const Form = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -15,9 +16,10 @@ const Form = () => {
   const [departuresTime, setDeparturesTime] = useState<string | undefined>("");
   const [destinationTime, setDestinationTime] = useState<string | undefined>("");
   const [people, setPeople] = useState<number | undefined>(0);
-  const [host, setHost] = useState<string>("");
 
-  const params = useSearchParams();
+  const { data: session } = useSession();
+
+  const params: any = useSearchParams();
   let id = "";
 
   for (const [key, value] of params.entries()) {
@@ -115,13 +117,15 @@ const Form = () => {
           placeholder={"출발지"}
           onChange={(option) => setDepartures(option?.value)}
           isSearchable={false}
-          options={departuresOptions}></Select>
+          options={departuresOptions}
+        ></Select>
         <BsArrowRightCircle size={23} />
         <Select
           placeholder={"도착지"}
           onChange={(option) => setDestination(option?.value)}
           isSearchable={false}
-          options={destinationOptions}></Select>
+          options={destinationOptions}
+        ></Select>
       </InputContainer>
       <label>출발시간과 도착시간을 설정해주세요.</label>
       <InputContainer>
@@ -129,13 +133,15 @@ const Form = () => {
           placeholder={"출발시간"}
           onChange={(option) => setDeparturesTime(option?.value)}
           isSearchable={false}
-          options={departuresTimeOptions}></Select>
+          options={departuresTimeOptions}
+        ></Select>
         <BsArrowRightCircle size={23} />
         <Select
           placeholder={"도착시간"}
           onChange={(option) => setDestinationTime(option?.value)}
           isSearchable={false}
-          options={destinationTimeOptions}></Select>
+          options={destinationTimeOptions}
+        ></Select>
       </InputContainer>
       <label>인원수를 설정해주세요.</label>
       <div>
@@ -143,7 +149,8 @@ const Form = () => {
           placeholder={"인원수"}
           onChange={(option) => setPeople(option?.value)}
           isSearchable={false}
-          options={poepleOptions}></Select>
+          options={poepleOptions}
+        ></Select>
       </div>
       <ButtonContainer>
         <Link href={`/chat-list?id=${id}`}>
@@ -159,7 +166,8 @@ const Form = () => {
             people === 0
               ? true
               : false
-          }>
+          }
+        >
           생성하기
         </CreateButton>
       </ButtonContainer>

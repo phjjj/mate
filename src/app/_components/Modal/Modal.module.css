@@ -1,0 +1,66 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.modalWrapper {
+  /* 화면에 꽉 차게 하는 코드(여기서는 너비를 꽉 채우는 용도) */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+  /* 위아래 너비를 준 상태에서 가로 50%, 세로 50%를 이동시킬 수 있다 (= 한가운데 배치) */
+  transform: translate(-50%, -50%);
+
+  /* 위의 overlay 배경보다 한 단계 더 높게 배치 */
+  z-index: 30;
+}
+
+.modal {
+  position: relative;
+  display: flex;
+  border-radius: 14px;
+  animation: slide-down 300ms ease-out forwards;
+  width: 260px;
+  height: auto;
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); */
+}
+
+.modal h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.modal .car__bg {
+  background-color: wheat;
+}
+
+.modal .car__bg img {
+  width: 100%;
+  height: auto;
+}
+
+.modal div div {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

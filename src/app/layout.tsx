@@ -1,5 +1,4 @@
-"use client";
-
+import Provider from "./_components/Provider/Provider";
 import "./globals.css";
 import StyledComponentsRegistry from "./registry";
 import { SessionProvider } from "next-auth/react";
@@ -7,11 +6,14 @@ import { SessionProvider } from "next-auth/react";
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <SessionProvider>
+      <Provider>
         <StyledComponentsRegistry>
-          <body suppressHydrationWarning={true}>{children}</body>
+          <body suppressHydrationWarning={true}>
+            <div id="overlays"></div>
+            {children}
+          </body>
         </StyledComponentsRegistry>
-      </SessionProvider>
+      </Provider>
     </html>
   );
 }
