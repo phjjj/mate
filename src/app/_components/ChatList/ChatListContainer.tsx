@@ -107,7 +107,7 @@ export const ChatListContainer = () => {
         if (chat.host === null) {
           for (let member of selectChatRoom.member) {
             if (member === session?.user.id) {
-              console.log("멤버 있음");
+              //console.log("멤버 있음");
               isMemberCheck = true;
               return isMemberCheck;
             }
@@ -126,7 +126,7 @@ export const ChatListContainer = () => {
 
       for (let member of selectChatRoom.member) {
         if (member === session?.user.id) {
-          console.log("멤버 있음");
+          //console.log("멤버 있음");
           isMemberCheck = true;
           return isMemberCheck;
         }
@@ -184,7 +184,7 @@ export const ChatListContainer = () => {
       alert(isCreatedChatRoom?.message);
     }
   };
-  console.log(session);
+
   return (
     <>
       {showModal}

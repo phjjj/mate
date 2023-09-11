@@ -42,7 +42,7 @@ export default function Profile() {
     } = await axios.get(`/api/users/profile/${id}`);
     setUser(user);
   };
-  console.log(user);
+
   useEffect(() => {
     axiosGetReqUser();
     setIsLoading(false);
