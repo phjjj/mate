@@ -65,21 +65,6 @@ const Form = () => {
     setTitle(event.target.value);
   };
 
-  // 원래 쓰던 input 혹시나 해서 주석 처리
-
-  // const endPointInputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setDestination(event.target.value);
-  // };
-  // const departureTimeInputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setDepartureTime(event.target.value);
-  // };
-  // const arrivalTimeInputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setDestinationTime(event.target.value);
-  // };
-  // const numberOfPeopleInputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setPeople(+event.target.value);
-  // };
-
   // 출발지 옵션
   const departuresOptions = [
     { value: "인동", label: "인동" },

@@ -164,6 +164,7 @@ const page = () => {
             disabled={!connected}
             onChange={(e) => {
               setMessageInput(e.target.value);
+              (inputRef.current as any).focus();
             }}
             onKeyUp={(e) => {
               if (e.key === "Enter") {
