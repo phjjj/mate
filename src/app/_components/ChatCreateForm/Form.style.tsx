@@ -1,27 +1,11 @@
 "use client";
 import { styled } from "styled-components";
 
-export const Header = styled.header`
-  & .title__container {
-    height: 7.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    & h2 {
-      text-align: center;
-      font-size: 1.8rem;
-    }
-    & .profile__svg {
-      display: flex;
-      justify-content: flex-end;
-      margin-right: 1rem;
-    }
-  }
-`;
-
 export const FormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
-  width: 80%;
+  min-width: 312px;
   & label {
     font-size: 0.8rem;
   }
