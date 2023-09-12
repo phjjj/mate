@@ -1,4 +1,4 @@
-import { Main, Title } from "@/src/app/page.style";
+import { LoginBox, Main, Title } from "@/src/app/page.style";
 import LoginBtn from "@/src/app/_components/Button/LoginBtn";
 
 export const metadata = {
@@ -13,7 +13,9 @@ export default function Home() {
   return (
     <Main>
       <Title>MATE</Title>
-      <LoginBtn />
+      <LoginBox>
+        <LoginBtn />
+      </LoginBox>
     </Main>
   );
 }

@@ -7,7 +7,7 @@ export const Main = styled.main`
   flex-direction: column;
   margin: 0 auto;
   align-items: center;
-  gap: 500px;
+  /* gap: 500px; */
   height: 100%;
   background-color: #74b9ff;
 `;
@@ -18,4 +18,11 @@ export const Title = styled.main`
   font-size: 58px;
   font-weight: 400;
   padding-top: 100px;
+  height: 70%;
+`;
+
+export const LoginBox = styled.div`
+  height: calc(100% - 70%);
+  display: flex;
+  align-items: center;
 `;
