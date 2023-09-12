@@ -5,10 +5,16 @@ import { CgProfile } from "react-icons/cg";
 import { AiTwotoneHome } from "react-icons/ai";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 const Nav = () => {
   const { data: session } = useSession();
-  // console.log(session);
+
+  //세션이 없으면 로그인 창으로 리다이렉트
+  if (session === null) {
+    redirect("/");
+  }
+
   return (
     <Wraaper>
       <BtnBox>

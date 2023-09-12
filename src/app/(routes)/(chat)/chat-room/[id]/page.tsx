@@ -59,10 +59,10 @@ const page = () => {
     auth: { id },
   });
 
-  // 세션이 없으면 로그인 창으로 리다이렉트
-  // if (session === null) {
-  //   redirect("/");
-  // }
+  //세션이 없으면 로그인 창으로 리다이렉트
+  if (session === null) {
+    redirect("/");
+  }
 
   // DB에서 해당 채팅방 메시지 리스트 불러오기
   const getMessageList = async () => {

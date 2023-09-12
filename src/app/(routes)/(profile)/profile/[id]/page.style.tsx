@@ -96,8 +96,11 @@ export const ButtonsBox = styled.div`
 `;
 export const HomeButton = styled(Button)`
   margin-bottom: 30px;
+  background-color: #74b9ff;
+  color: #fff;
 `;
 export const RedButton = styled(Button)`
+  background-color: #74b9ff;
   color: red;
 `;
 
