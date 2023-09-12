@@ -39,7 +39,15 @@
   |<img width="395" alt="스크린샷 2023-09-12 오후 2 43 37" src="https://github.com/phjjj/mate/assets/44064257/b58db10f-628d-4bbb-acb1-566ea077e4b3">|<img width="387" alt="스크린샷 2023-09-12 오후 2 35 12" src="https://github.com/phjjj/mate/assets/44064257/c337f5b4-675e-4b22-93eb-6bcd1e44c379">|<img width="405" alt="스크린샷 2023-09-12 오후 2 34 59" src="https://github.com/phjjj/mate/assets/44064257/ad63a105-8ee0-4999-91a6-0633ad670d5b">|<img width="378" alt="스크린샷 2023-09-12 오후 2 35 56" src="https://github.com/phjjj/mate/assets/44064257/e5019d2f-6adf-4fb0-bf13-56575e635abb">|<img width="381" alt="스크린샷 2023-09-12 오후 2 36 18" src="https://github.com/phjjj/mate/assets/44064257/101e89d6-90c5-4ad3-9654-02a927f05c35">|
   |카카오 회워가입 및 로그인|채팅방 목록|채팅방 생성폼 작성|해당 카풀 채팅방|프로필 정보|
 
+## 핵심 기능
+1. 소셜로그인 API 활용.
+2. 로그인 유지.
+3. 채팅 기능.
+4. 라우팅 보호.
+5. 컴포넌트 분리
 
 
 
-## 기능 설명
+
+
+
