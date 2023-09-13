@@ -25,7 +25,7 @@
 |박해준|손민석|
 |:------:|:------:|
 |<img src="https://avatars.githubusercontent.com/u/102671646?v=4" width=140 height=140 /><br/>프론트엔드<br/>|<img src="https://github.com/phjjj/mate/assets/44064257/8092aa37-a306-45ad-93d2-78463030d1cb" width=140 height=140 /><br/>프론트엔드<br/>|
-|[@phjjj](https://github.com/SonMinSeock)|[@SonMinSeock](https://github.com/SonMinSeock)|
+|[@phjjj](https://github.com/phjjj)|[@SonMinSeock](https://github.com/SonMinSeock)|
 ## 4.개발 환경
 <div align="center">
   <h3>프론트엔드</h3>
