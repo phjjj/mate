@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>MATE</h1>
+  <h1>🚙 MATE</h1>
   <p >
     지방대학 버스 교통 접근성 문제로 인해 등교하기 힘든 학생을 위한 카풀 플랫폼!<br/>
     MATE 카풀 플랫폼을 통해 간편하게 자동차를 공유하여 등교 여유를 제공합니다!
@@ -22,9 +22,10 @@
 - 23.08.07일 ~ 23.09
 
 ## 3.맴버 구성
-- 박해준(프론트엔드)
-- 손민석(프론트엔드)
-
+|박해준|손민석|
+|:------:|:------:|
+|<img src="https://avatars.githubusercontent.com/u/102671646?v=4" width=140 height=140 /><br/>프론트엔드<br/>|<img src="https://github.com/phjjj/mate/assets/44064257/8092aa37-a306-45ad-93d2-78463030d1cb" width=140 height=140 /><br/>프론트엔드<br/>|
+|[@phjjj](https://github.com/SonMinSeock)|[@SonMinSeock](https://github.com/SonMinSeock)|
 ## 4.개발 환경
 <div align="center">
   <h3>프론트엔드</h3>
