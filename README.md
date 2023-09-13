@@ -11,23 +11,25 @@
   - [개발 기간](#개발-기간)
   - [맴버 구성](#맴버-구성)
   - [개발 환경](#개발-환경)
+  - [프로젝트 구조](#프로젝트-구조)
   - [화면 구성](#화면-구성)
   - [핵심 기능](#핵심-기능)
 
-## 프로젝트 소개
+## 1.프로젝트 소개
 <p>MATE 플랫폼은 지방 대학교 학생들이 대학 등교에 어려움을 겪는 시내버스의 긴 시간을 극복하기 위해 자동차를 공유하고 교내에서 카풀 운영할 수 있도록 지원하는 서비스입니다. 이로써 대중교통의 높은 접근성을 유지하면서 학생들에게 편리한 대안을 제공합니다.</p>
 
 
-## 개발 기간
+## 2.개발 기간
 - 23.08.07일 ~ 23.09
 
-## 맴버 구성
+## 3.맴버 구성
 - 박해준(프론트엔드)
 - 손민석(프론트엔드)
 
-## 개발 환경
+## 4.개발 환경
 <div align="center">
   <h3>프론트엔드</h3>
+  <img src="https://camo.githubusercontent.com/f06b864d6c0e18e9b65f51256d82d82457710650a556be1bd6febd6cde6d4ac9/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f547970657363726970742d3030376163633f7374796c653d666f722d7468652d6261646765266c6162656c436f6c6f723d626c61636b266c6f676f3d74797065736372697074266c6f676f436f6c6f723d303037616363" />
   <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
   <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
   <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
@@ -38,13 +40,83 @@
   <img src="https://img.shields.io/badge/mongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=white">
 </div>
 
-## 화면 구성
+## 5.프로젝트 구조
+
+```
+├── README.md
+├── .eslintrc.js
+├── .gitignore
+├── .prettierrc.json
+├── package-lock.json
+├── package.json
+│
+├── public
+│    └── index.html
+└── src
+     ├── App.jsx
+     ├── index.jsx
+     ├── api
+     │     └── mandarinAPI.js
+     ├── asset
+     │     ├── fonts
+     │     ├── css_sprites.png
+     │     ├── logo-404.svg
+     │     └── logo-home.svg
+     │          .
+     │          .
+     │          .
+     ├── atoms
+     │     ├── LoginData.js
+     │     └── LoginState.js
+     ├── common
+     │     ├── alert
+     │     │     ├── Alert.jsx
+     │     │     └── Alert.Style.jsx
+     │     ├── button
+     │     ├── comment
+     │     ├── inputBox
+     │     ├── post
+     │     ├── postModal
+     │     ├── product
+     │     ├── tabMenu
+     │     ├── topBanner
+     │     └── userBanner
+     ├── pages
+     │     ├── addProduct
+     │     │     ├── AddProduct.jsx
+     │     │     └── AddProduct.Style.jsx
+     │     ├── chatList
+     │     ├── chatRoom
+     │     ├── emailLogin
+     │     ├── followerList
+     │     ├── followingList
+     │     ├── home
+     │     ├── join
+     │     ├── page404
+     │     ├── postDetail
+     │     ├── postEdit
+     │     ├── postUpload
+     │     ├── productEdit
+     │     ├── profile
+     │     ├── profileEdit
+     │     ├── profileSetting
+     │     ├── search
+     │     ├── snsLogin
+     │     └── splash
+     ├── routes
+     │     ├── privateRoutes.jsx
+     │     └── privateRoutesRev.jsx  
+     └── styles
+           └── Globalstyled.jsx
+```
+
+## 6.화면 구성
  |초기화면|홈|채팅방생성|채팅방|프로필|
   |---|---|---|---|---|
   |<img width="395" alt="스크린샷 2023-09-12 오후 2 43 37" src="https://github.com/phjjj/mate/assets/44064257/b58db10f-628d-4bbb-acb1-566ea077e4b3">|<img width="387" alt="스크린샷 2023-09-12 오후 2 35 12" src="https://github.com/phjjj/mate/assets/44064257/c337f5b4-675e-4b22-93eb-6bcd1e44c379">|<img width="405" alt="스크린샷 2023-09-12 오후 2 34 59" src="https://github.com/phjjj/mate/assets/44064257/ad63a105-8ee0-4999-91a6-0633ad670d5b">|<img width="378" alt="스크린샷 2023-09-12 오후 2 35 56" src="https://github.com/phjjj/mate/assets/44064257/e5019d2f-6adf-4fb0-bf13-56575e635abb">|<img width="381" alt="스크린샷 2023-09-12 오후 2 36 18" src="https://github.com/phjjj/mate/assets/44064257/101e89d6-90c5-4ad3-9654-02a927f05c35">|
   |카카오 회워가입 및 로그인|채팅방 목록|채팅방 생성폼 작성|해당 카풀 채팅방|프로필 정보|
 
-## 핵심 기능
+## 7.핵심 기능
 
 1. [카카오 로그인 API 활용](#카카오-로그인-API-활용) 
 2. [로그인 유지](#로그인-유지)
@@ -80,9 +152,4 @@
   - 내가 보낸 채팅메시지 인지 확인.
     - 세션 유저데이터를 확인하여 채팅 데이터인 유저 값을 비교합니다.
     - 자신이 보낸 채팅 메시지는 우측에 보여주며 상대방 채팅 메시지는 좌측에 보여줍니다.
-
-
-
-
-
-
+    - 
