@@ -1,4 +1,4 @@
-<div align="center">
+![image](https://github.com/phjjj/mate/assets/44064257/6dbea5a7-298e-4fae-9227-619a4efd5275)<div align="center">
   <h1>🚙 MATE</h1>
   <p >
     지방대학 버스 교통 접근성 문제로 인해 등교하기 힘든 학생을 위한 카풀 플랫폼!<br/>
@@ -24,7 +24,7 @@
 ## 3.맴버 구성
 |박해준|손민석|
 |:------:|:------:|
-|<img src="https://avatars.githubusercontent.com/u/102671646?v=4" width=140 height=140 /><br/>프론트엔드<br/>|<img src="https://github.com/phjjj/mate/assets/44064257/8092aa37-a306-45ad-93d2-78463030d1cb" width=140 height=140 /><br/>프론트엔드<br/>|
+|<img src="https://avatars.githubusercontent.com/u/102671646?v=4" width=140 height=140 /><br/>프론트엔드<br/>|<img src="https://avatars.githubusercontent.com/u/44064257?s=400&u=c0f84c43a6aaa80ecc32bf82f47e893e26400fbf&v=4" width=140 height=140 /><br/>프론트엔드<br/>|
 |[@phjjj](https://github.com/phjjj)|[@SonMinSeock](https://github.com/SonMinSeock)|
 ## 4.개발 환경
 <div align="center">
