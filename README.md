@@ -10,8 +10,7 @@
   - [프로젝트 소개](#프로젝트-소개) 
   - [개발 기간](#개발-기간)
   - [맴버 구성](#맴버-구성)
-  - [개발 환경](#개발-환경)
-  - [프로젝트 구조](#프로젝트-구조)
+  - [개발 환경](#개발-환경)  
   - [화면 구성](#화면-구성)
   - [핵심 기능](#핵심-기능)
 
@@ -40,83 +39,13 @@
   <img src="https://img.shields.io/badge/mongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=white">
 </div>
 
-## 5.프로젝트 구조
-
-```
-├── README.md
-├── .eslintrc.js
-├── .gitignore
-├── .prettierrc.json
-├── package-lock.json
-├── package.json
-│
-├── public
-│    └── index.html
-└── src
-     ├── App.jsx
-     ├── index.jsx
-     ├── api
-     │     └── mandarinAPI.js
-     ├── asset
-     │     ├── fonts
-     │     ├── css_sprites.png
-     │     ├── logo-404.svg
-     │     └── logo-home.svg
-     │          .
-     │          .
-     │          .
-     ├── atoms
-     │     ├── LoginData.js
-     │     └── LoginState.js
-     ├── common
-     │     ├── alert
-     │     │     ├── Alert.jsx
-     │     │     └── Alert.Style.jsx
-     │     ├── button
-     │     ├── comment
-     │     ├── inputBox
-     │     ├── post
-     │     ├── postModal
-     │     ├── product
-     │     ├── tabMenu
-     │     ├── topBanner
-     │     └── userBanner
-     ├── pages
-     │     ├── addProduct
-     │     │     ├── AddProduct.jsx
-     │     │     └── AddProduct.Style.jsx
-     │     ├── chatList
-     │     ├── chatRoom
-     │     ├── emailLogin
-     │     ├── followerList
-     │     ├── followingList
-     │     ├── home
-     │     ├── join
-     │     ├── page404
-     │     ├── postDetail
-     │     ├── postEdit
-     │     ├── postUpload
-     │     ├── productEdit
-     │     ├── profile
-     │     ├── profileEdit
-     │     ├── profileSetting
-     │     ├── search
-     │     ├── snsLogin
-     │     └── splash
-     ├── routes
-     │     ├── privateRoutes.jsx
-     │     └── privateRoutesRev.jsx  
-     └── styles
-           └── Globalstyled.jsx
-```
-
-## 6.화면 구성
+## 5.화면 구성
  |초기화면|홈|채팅방생성|채팅방|프로필|
   |---|---|---|---|---|
   |<img width="395" alt="스크린샷 2023-09-12 오후 2 43 37" src="https://github.com/phjjj/mate/assets/44064257/b58db10f-628d-4bbb-acb1-566ea077e4b3">|<img width="387" alt="스크린샷 2023-09-12 오후 2 35 12" src="https://github.com/phjjj/mate/assets/44064257/c337f5b4-675e-4b22-93eb-6bcd1e44c379">|<img width="405" alt="스크린샷 2023-09-12 오후 2 34 59" src="https://github.com/phjjj/mate/assets/44064257/ad63a105-8ee0-4999-91a6-0633ad670d5b">|<img width="378" alt="스크린샷 2023-09-12 오후 2 35 56" src="https://github.com/phjjj/mate/assets/44064257/e5019d2f-6adf-4fb0-bf13-56575e635abb">|<img width="381" alt="스크린샷 2023-09-12 오후 2 36 18" src="https://github.com/phjjj/mate/assets/44064257/101e89d6-90c5-4ad3-9654-02a927f05c35">|
   |카카오 회워가입 및 로그인|채팅방 목록|채팅방 생성폼 작성|해당 카풀 채팅방|프로필 정보|
 
-## 7.핵심 기능
+## 6.핵심 기능
 
 1. [카카오 로그인 API 활용](#카카오-로그인-API-활용) 
 2. [로그인 유지](#로그인-유지)
@@ -152,4 +81,3 @@
   - 내가 보낸 채팅메시지 인지 확인.
     - 세션 유저데이터를 확인하여 채팅 데이터인 유저 값을 비교합니다.
     - 자신이 보낸 채팅 메시지는 우측에 보여주며 상대방 채팅 메시지는 좌측에 보여줍니다.
-    - 
